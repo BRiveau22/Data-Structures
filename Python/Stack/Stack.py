@@ -56,5 +56,5 @@ class Stack:
     def size(self):
         return self.size
     
-    def isEmpty(self):
+    def is_empty(self):
         return self.size == 0
