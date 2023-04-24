@@ -1,7 +1,7 @@
 #include "Linked_List.h"
 
 LinkedList* create(){
-    LinkedList* list = (LinkedList*)malloc(sizeof(List));
+    LinkedList* list = (LinkedList*)malloc(sizeof(LinkedList));
     list->head = NULL;
     list->size = 0;
     return list;

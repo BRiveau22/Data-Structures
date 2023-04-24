@@ -1,5 +1,6 @@
 //Linked_List.h
 #include "Node.h"
+#include <stdbool.h>
 
 typedef struct LinkedList {
     Node* head;

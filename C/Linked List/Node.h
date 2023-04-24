@@ -1,5 +1,6 @@
-#ifndef NODE_H
-#define NODE_H
+#ifndef LINKED_LIST_H
+#define LINKED_LIST_H
+#include <stdlib.h>
 
 typedef struct Node {
     int data;
