@@ -72,6 +72,10 @@ public class Queue{
     }
 
     public int peek(){
+        if (this.size == 0) {
+            print("Queue is empty");
+            return -1;
+        }
         return this.front.data;
     }
 
