@@ -53,6 +53,7 @@ class DynamicArray{
         }
 
         this.array[this.length] = data;
+        this.length++;
     }
 
     prepend(data){
@@ -65,6 +66,7 @@ class DynamicArray{
         }
 
         this.array[0] = data;
+        this.length++;
     }
 
     insert(data, idx) {

@@ -49,7 +49,7 @@ class PriorityQueue:
 
     # Methods
     def enqueue(self, data, priority):
-        if(self.isEmpty()):
+        if(self.is_empty()):
             self.front = PriorityNode(data, priority)
             self.back = self.front
             self.size += 1
@@ -68,7 +68,7 @@ class PriorityQueue:
         self.size += 1
 
     def dequeue(self):
-        if(self.isEmpty()):
+        if(self.is_empty()):
             print("Queue is empty")
             return
 
@@ -76,14 +76,14 @@ class PriorityQueue:
         self.size -= 1
 
     def peek(self):
-        if(self.isEmpty()):
+        if(self.is_empty()):
             print("Queue is empty")
             return -1
 
         return self.front.data
     
-    def isEmpty(self):
+    def is_empty(self):
         return self.size == 0
     
-    def getSize(self):
+    def get_size(self):
         return self.size
