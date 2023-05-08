@@ -20,18 +20,17 @@ class Stack:
 
     def __init__(self, top):
         self.top = top
-        self.size = 0
+        self.size = 1
 
-    def __init__(self, top, list):
+    def __init__(self, list):
         self.top = Node(list[len(list) - 1])
         self.size = 1
 
         current = self.top
-        for i in range(len(list)):
-            if i > 0:
-                current.next = Node(list[len(list) - 1 - i])
-                current = current.next
-                self.size += 1
+        for i in range(1, len(list)):
+            current.next = Node(list[i])
+            current = current.next
+            self.size += 1
 
     # Methods
     def push(self, data):
