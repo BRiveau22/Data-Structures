@@ -90,18 +90,11 @@ BSTNode* BSTree::remove(BSTNode* current_node, int data) {
 		}
 		//1 child (right)
 		else if (current_node->right != nullptr) {
-			BSTNode* temp = current_node->right;
-
-			current_node = temp;
-			current_node->right = this->remove(current_node->right, temp->data);
+			current_node = current_node->right;
 		}
 		//1 child (left)
 		else if (current_node->left != nullptr) {
-			BSTNode* temp = current_node->left;
-
-			//Uses IOP to replace the node to be removed and then removes the IOP
-			current_node = temp;
-			current_node->left = this->remove(current_node->left, temp->data);
+			current_node = current_node->left;
 		}
 		//No children
 		else {
