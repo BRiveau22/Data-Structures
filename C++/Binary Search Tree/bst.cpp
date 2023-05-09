@@ -62,16 +62,11 @@ int BSTree::height(BSTNode* current_node) {
 }
 
 BSTNode* BSTree::find_ios(BSTNode* current_node) {
-	if (current_node->right == nullptr) {
-		return nullptr;
+	if (current_node->left == nullptr) {
+		return current_node;
 	}
 
-	BSTNode* ios_node = current_node->right;
-	while (ios_node->left != nullptr) {
-		ios_node = ios_node->left;
-	}
-
-	return ios_node;
+	return this->find_ios(current_node->left);
 }
 
 BSTNode* BSTree::remove(BSTNode* current_node, int data) {
