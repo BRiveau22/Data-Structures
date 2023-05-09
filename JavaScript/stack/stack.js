@@ -54,7 +54,7 @@ class Stack{
         return -1;
     }
 
-    top(){
+    peek(){
         if(!this.isEmpty()){
             return this.top.data;
         }

@@ -49,7 +49,7 @@ class Stack:
             self.size -= 1
             return data
         
-    def top(self):
+    def peek(self):
         return self.top.data
     
     def size(self):

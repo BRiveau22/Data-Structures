@@ -46,7 +46,7 @@ public class Stack {
         return -1;
     }
 
-    public int top(){
+    public int peek(){
         if(!this.isEmpty()){
             return this.top.getData();
         }
