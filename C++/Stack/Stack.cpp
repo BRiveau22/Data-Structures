@@ -6,10 +6,12 @@ Stack::Stack(){
     this->size = 0;
 }
 
+
 Stack::Stack(int data){
     this->top = new Node(data);
     this->size = 1;
 }
+
 
 Stack::Stack(std::vector<int> data){
     this->top = new Node(data[0]);
@@ -22,6 +24,7 @@ Stack::Stack(std::vector<int> data){
     }
 }
 
+
 // Destructor
 Stack::~Stack(){
     Node* current = this->top;
@@ -32,6 +35,7 @@ Stack::~Stack(){
     }
 }
 
+
 // Methods
 void Stack::push(int data){
     Node* new_node = new Node(data);
@@ -39,6 +43,7 @@ void Stack::push(int data){
     this->top = new_node;
     this->size++;
 }
+
 
 int Stack::pop(){
     if(this->is_empty()){
@@ -53,6 +58,7 @@ int Stack::pop(){
     return data;
 }
 
+
 int Stack::peek(){
     if(this->is_empty()){
         return -1;
@@ -61,9 +67,11 @@ int Stack::peek(){
     return this->top->data;
 }
 
+
 bool Stack::is_empty(){
     return this->size == 0;
 }
+
 
 unsigned int Stack::get_size(){
     return this->size;

@@ -1,10 +1,10 @@
 #include "Dynamic_Array.h"
-#include <cstring>
-#include <iostream>
 
+// Constructors
 DynamicArray::DynamicArray()
     : m_length(0), m_capacity(0), m_scaling_factor(2.0), m_data(nullptr) {
 }
+
 
 DynamicArray::DynamicArray(double scaling_factor, unsigned int capacity) {
     this->m_data = new int[capacity];
@@ -24,31 +24,40 @@ DynamicArray::DynamicArray(double scaling_factor, unsigned int length, int defau
     }
 }
 
+
+// Copy Constructor
 DynamicArray::DynamicArray(const DynamicArray& other) {
     // use the assignment operator
     (*this) = other;
 }
 
-// Destructor: destroys the dynamically allocated array on the heap
+
+// Destructor
 DynamicArray::~DynamicArray() {
     delete[] m_data;
 }
 
+
+// Methods
 unsigned int DynamicArray::get_length() {
     return m_length;
 }
+
 
 unsigned int DynamicArray::get_capacity() {
     return m_capacity;
 }
 
+
 double DynamicArray::get_scaling_factor() {
     return m_scaling_factor;
 }
 
+
 void DynamicArray::set_scaling_factor(double value) {
     m_scaling_factor = value;
 }
+
 
 std::string DynamicArray::to_string() {
     std::string str("");
@@ -65,12 +74,11 @@ std::string DynamicArray::to_string() {
     return str;
 }
 
+
 void DynamicArray::append(int value) {
-    //Increases the length and capacity of the array as necessary
     if (m_length == m_capacity) {
         m_capacity *= m_scaling_factor;
 
-        //Increases the capacity of m_data by 1
         auto new_m_data = new int[m_capacity];
         for (int i = 0; i < m_length; i++) {
             new_m_data[i] = m_data[i];
@@ -79,17 +87,15 @@ void DynamicArray::append(int value) {
         m_data = new_m_data;
     }
 
-    //Appends the input value to the array
     m_data[m_length] = value;
     m_length++;
 }
 
+
 void DynamicArray::prepend(int value) {
-    //Increases the length and capacity of the array as necessary
     if (m_length == m_capacity) {
         m_capacity *= m_scaling_factor;
 
-        //Increases the capacity of m_data by 1
         auto new_m_data = new int[m_capacity];
         for (int i = 0; i < m_length; i++) {
             new_m_data[i + 1] = m_data[i];
@@ -107,6 +113,7 @@ void DynamicArray::prepend(int value) {
     m_length++;
 }
 
+
 bool DynamicArray::find_first_of(int value, unsigned int* index) {
     bool found = false;
     for (int i = 0; i < m_length; i++) {
@@ -118,6 +125,7 @@ bool DynamicArray::find_first_of(int value, unsigned int* index) {
     }
     return found;
 }
+
 
 bool DynamicArray::find_last_of(int value, unsigned int* index) {
     bool found = false;
@@ -131,6 +139,7 @@ bool DynamicArray::find_last_of(int value, unsigned int* index) {
     return found;
 }
 
+
 void DynamicArray::remove_last() {
     if (m_length > 0) {
         auto new_m_data = new int[m_length - 1];
@@ -142,6 +151,7 @@ void DynamicArray::remove_last() {
         m_length -= 1;
     }
 }
+
 
 void DynamicArray::remove_first() {
     if (m_length > 0) {
@@ -155,6 +165,7 @@ void DynamicArray::remove_first() {
     }
 }
 
+
 void DynamicArray::clear() {
     this->~DynamicArray();
     this->m_data = nullptr;
@@ -162,10 +173,11 @@ void DynamicArray::clear() {
     m_capacity = 0;
 }
 
-// Examples of "operator overloading"
+// Operator Overloads
 int& DynamicArray::operator[](unsigned int index) {
     return m_data[index];
 }
+
 
 DynamicArray& DynamicArray::operator=(const DynamicArray& other) {
     m_length = other.m_length;

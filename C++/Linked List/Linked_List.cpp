@@ -1,7 +1,6 @@
 #include "Linked_List.h"
-#include <iostream>
 
-
+// Constructors
 LinkedList::LinkedList() {
 	this->head = nullptr;
 	this->size = 0;
@@ -33,11 +32,14 @@ LinkedList::LinkedList(std::vector<int> vec) {
 	}
 }
 
+
+// Destructor
 LinkedList::~LinkedList() {
 	delete head;
 }
 
 
+// Methods
 void LinkedList::push_front(int data) {
 	Node* new_node = new Node(data);
 
@@ -47,6 +49,7 @@ void LinkedList::push_front(int data) {
 	head = new_node;
 	size++;
 }
+
 
 void LinkedList::push_back(int data) {
 	Node* new_node = new Node(data);
@@ -64,6 +67,7 @@ void LinkedList::push_back(int data) {
 
 	size++;
 }
+
 
 void LinkedList::insert(int data, int idx) {
 	if (idx >= size) {
@@ -84,6 +88,7 @@ void LinkedList::insert(int data, int idx) {
 		size++;
 	}
 }
+
 
 void LinkedList::remove(int data) {
 	bool removed = false;
@@ -143,7 +148,7 @@ int LinkedList::get_size() {
 	return this->size;
 }
 
-// O(n)
+
 std::string LinkedList::to_string() {
 	std::string stringified;
 	Node* tmp = this->head;

@@ -1,34 +1,42 @@
 #include "bst.h"
 
+// Node Constructors
 BSTNode::BSTNode(int data) {
 	this->data = data;
 	this->left = nullptr;
 	this->right = nullptr;
 }
 
+
+// Node Destructor
 BSTNode::~BSTNode() {
 
 }
 
+
+// Tree Constructors
 BSTree::BSTree() {
 	this->root = nullptr;
 }
 
+
+// Tree Destructor
 BSTree::~BSTree() {
 	destroy(this->root);
 }
 
-//Private
+
+//Private Methods
 void BSTree::destroy(BSTNode* current_node) {
 	if (current_node == nullptr) {
 		return;
 	}
 
-	//Recursively destroys the entire tree starting at current_node (works from the bottom up)
 	destroy(current_node->left);
 	destroy(current_node->right);
 	delete current_node;
 }
+
 
 BSTNode* BSTree::insert(BSTNode* current_node, int data) {
 	if (current_node == nullptr) {
@@ -44,6 +52,7 @@ BSTNode* BSTree::insert(BSTNode* current_node, int data) {
 	return current_node;
 }
 
+
 int BSTree::height(BSTNode* current_node) {
 	if (current_node == nullptr) {
 		return 0;
@@ -52,7 +61,6 @@ int BSTree::height(BSTNode* current_node) {
 	int left_height = this->height(current_node->left);
 	int right_height = this->height(current_node->right);
 
-	//Returns the greater of the two heights
 	if (left_height > right_height) {
 		return left_height + 1;
 	}
@@ -61,6 +69,7 @@ int BSTree::height(BSTNode* current_node) {
 	}
 }
 
+
 BSTNode* BSTree::find_ios(BSTNode* current_node) {
 	if (current_node->left == nullptr) {
 		return current_node;
@@ -68,6 +77,7 @@ BSTNode* BSTree::find_ios(BSTNode* current_node) {
 
 	return this->find_ios(current_node->left);
 }
+
 
 BSTNode* BSTree::remove(BSTNode* current_node, int data) {
 	if (current_node == nullptr) {
@@ -78,8 +88,6 @@ BSTNode* BSTree::remove(BSTNode* current_node, int data) {
 		//2 children
 		if (current_node->right != nullptr && current_node->left != nullptr) {
 			BSTNode* ios_node = find_ios(current_node);
-
-			//Uses IOS to replace the node to be removed and then removes the IOS
 			current_node->data = ios_node->data;
 			current_node->right = this->remove(current_node->right, ios_node->data);
 		}
@@ -97,7 +105,6 @@ BSTNode* BSTree::remove(BSTNode* current_node, int data) {
 			return nullptr;
 		}
 	}
-	//Traverses the binary search tree to find the node to be removed
 	else if (data < current_node->data) {
 		current_node->left = this->remove(current_node->left, data);
 	}
@@ -108,6 +115,7 @@ BSTNode* BSTree::remove(BSTNode* current_node, int data) {
 	return current_node;
 }
 
+
 void BSTree::preorder(BSTNode* current_node, std::ostream& os) {
 	if (current_node == nullptr) {
 		return;
@@ -116,6 +124,7 @@ void BSTree::preorder(BSTNode* current_node, std::ostream& os) {
 	this->preorder(current_node->left, os);
 	this->preorder(current_node->right, os);
 }
+
 
 void BSTree::inorder(BSTNode* current_node, std::ostream& os) {
 	if (current_node == nullptr) {
@@ -126,6 +135,7 @@ void BSTree::inorder(BSTNode* current_node, std::ostream& os) {
 	this->inorder(current_node->right, os);
 }
 
+
 void BSTree::postorder(BSTNode* current_node, std::ostream& os) {
 	if (current_node == nullptr) {
 		return;
@@ -135,13 +145,14 @@ void BSTree::postorder(BSTNode* current_node, std::ostream& os) {
 	os << current_node->data << " ";
 }
 
-//Public
+
+//Public Methods
 void BSTree::insert(int data) {
-	//Only attempts to insert data if the value does not already exist in the tree
 	if (!this->search(data)) {
 		this->root = this->insert(this->root, data);
 	}
 }
+
 
 int BSTree::height() {
 	if (this->root == nullptr) {
@@ -151,27 +162,31 @@ int BSTree::height() {
 	return this->height(this->root);
 }
 
+
 void BSTree::remove(int data) {
-	//Only attempts to remove data if the value exists in the tree
 	if (this->search(data)) {
 		this->root = this->remove(this->root, data);
 	}
 }
+
 
 void BSTree::preorder(std::ostream& os) {
 	this->preorder(this->root, os);
 	os << "\n";
 }
 
+
 void BSTree::inorder(std::ostream& os) {
 	this->inorder(this->root, os);
 	os << "\n";
 }
 
+
 void BSTree::postorder(std::ostream& os) {
 	this->postorder(this->root, os);
 	os << "\n";
 }
+
 
 bool BSTree::search(int data) {
 	BSTNode* current_node = this->root;

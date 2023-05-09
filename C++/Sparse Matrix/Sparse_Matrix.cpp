@@ -1,5 +1,6 @@
 #include "Sparse_Matrix.h"
 
+// Constructors
 Sparse_Matrix::Sparse_Matrix() {
 	this->rows = 0;
 	this->cols = 0;
@@ -7,6 +8,7 @@ Sparse_Matrix::Sparse_Matrix() {
 	this->tail = nullptr;
 	this->num_elements = 0;
 }
+
 
 Sparse_Matrix::Sparse_Matrix(std::vector<std::vector<int>> matrix) {
 	Node* current_node = new Node();
@@ -43,6 +45,15 @@ Sparse_Matrix::Sparse_Matrix(std::vector<std::vector<int>> matrix) {
 	}
 }
 
+
+// Destructor
+Sparse_Matrix::~Sparse_Matrix() {
+	delete this->head;
+	this->head = nullptr;
+	this->tail = nullptr;
+}
+
+
 //Private Methods
 std::pair<int, int> Sparse_Matrix::get_max_row_col(Sparse_Matrix other) {
 	int max_row = 0;
@@ -64,6 +75,7 @@ std::pair<int, int> Sparse_Matrix::get_max_row_col(Sparse_Matrix other) {
 	return { max_row, max_col };
 }
 
+
 std::vector<std::vector<int>> Sparse_Matrix::add(Sparse_Matrix longer, Sparse_Matrix shorter, int max_row, int max_col) {
 	std::vector<std::vector<int>> new_matrix(max_row+1, std::vector<int>(max_col+1, 0));
 	Node* current_node_first = longer.head;
@@ -81,6 +93,7 @@ std::vector<std::vector<int>> Sparse_Matrix::add(Sparse_Matrix longer, Sparse_Ma
 
 	return new_matrix;
 }
+
 
 std::vector<std::vector<int>> Sparse_Matrix::multiply(Sparse_Matrix first, Sparse_Matrix second) {
 	std::vector<std::vector<int>> new_matrix(first.rows, std::vector<int>(second.cols, 0));
@@ -101,7 +114,8 @@ std::vector<std::vector<int>> Sparse_Matrix::multiply(Sparse_Matrix first, Spars
 	return new_matrix;
 }
 
-//Public Methods
+
+// Public Methods
 Sparse_Matrix Sparse_Matrix::add(Sparse_Matrix add_matrix) {
 	std::pair<int, int> extremes = this->get_max_row_col(add_matrix);
 	int max_row = extremes.first;
@@ -123,6 +137,7 @@ Sparse_Matrix Sparse_Matrix::add(Sparse_Matrix add_matrix) {
 	return out_matrix;
 }
 
+
 Sparse_Matrix Sparse_Matrix::multiply(Sparse_Matrix mult_matrix) {
 	//Creates a new 2D vector with the max row and column
 	std::vector<std::vector<int>> new_matrix;
@@ -134,6 +149,7 @@ Sparse_Matrix Sparse_Matrix::multiply(Sparse_Matrix mult_matrix) {
 	Sparse_Matrix out_matrix = Sparse_Matrix(new_matrix);
 	return out_matrix;
 }
+
 
 void Sparse_Matrix::insert(int row, int col, int val) {
 	Node* current_node = this->head;
@@ -167,6 +183,7 @@ void Sparse_Matrix::insert(int row, int col, int val) {
 		current_node->val = val;
 	}
 }
+
 
 void Sparse_Matrix::print_matrix() {
 	Node* current_node = this->head;

@@ -1,21 +1,20 @@
 #include "Priority_Queue.h"
-#include <iostream>
 
-// O(1)
+// Constructors
 Priority_Queue::Priority_Queue() {
     this->head = nullptr;
     this->tail = nullptr;
     this->size = 0;
 }
 
-// O(1)
+
 Priority_Queue::Priority_Queue(int data) {
     this->head = new Priority_Node(data, 0);
     this->tail = head;
     this->size = 1;
 }
 
-// O(n)
+
 Priority_Queue::Priority_Queue(std::vector<int> vec) {
     if (vec.empty()) {
         this->head = nullptr;
@@ -36,32 +35,29 @@ Priority_Queue::Priority_Queue(std::vector<int> vec) {
     this->size = vec.size();
 }
 
+
+// Destructor
 Priority_Queue::~Priority_Queue() {
     delete this->head;
     this->head = nullptr;
     this->tail = nullptr;
 }
 
-// O(n)
-// O(1) with a tail pointer
+
+// Methods
 void Priority_Queue::enqueue(int data, int priority) {
     Priority_Node* enqueue_node = new Priority_Node(data, priority);
 
     if (this->size == 0 || head == nullptr) {
         this->head = enqueue_node;
-        // Assign tail
         this->tail = head;
     }
     else {
         Priority_Node* current_node = head;
-
-        //Runs until either the end of the queue is reached, or an element with the current/greater than 
-        //current priority is found
         while (current_node->next != nullptr && current_node->next->priority <= priority) {
             current_node = current_node->next;
         }
 
-        //Checks to see if the value found had a priority matching the priority of the new data
         if (head->priority > priority) {
             enqueue_node->next = head;
             head = enqueue_node;
@@ -79,18 +75,12 @@ void Priority_Queue::enqueue(int data, int priority) {
     this->size++;
 }
 
-// O(n)
-// O(1) if `idx` == 0
+
 void Priority_Queue::dequeue() {
     Priority_Node* tmp = this->head;
 
-    // We found the element
     if (this->size > 0) {
-        // Deleting the head
         this->head = tmp->next;
-
-        // Without this, the Priority_Node destructor will delete
-        // every element in the list after 'temp'
         tmp->next = nullptr;
         delete tmp;
 
@@ -102,7 +92,7 @@ void Priority_Queue::dequeue() {
     }
 }
 
-// O(n)
+
 std::pair<int,int> Priority_Queue::peek() {
     std::pair<int, int> out_pair = { -100,-100 };
     if (size > 0) {
@@ -111,12 +101,12 @@ std::pair<int,int> Priority_Queue::peek() {
     return out_pair;
 }
 
-// O(1)
+
 int Priority_Queue::get_size() {
     return this->size;
 }
 
-// O(n)
+
 std::string Priority_Queue::to_string() {
     std::string stringified;
     Priority_Node* tmp = this->head;

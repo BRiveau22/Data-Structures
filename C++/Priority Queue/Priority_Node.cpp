@@ -1,11 +1,12 @@
 #include "Priority_Node.h"
 
-// Default constructor
+// Constructors
 Priority_Node::Priority_Node() {
     this->data = 0;
     this->next = nullptr;
     this->priority = 0;
 }
+
 
 Priority_Node::Priority_Node(int data) {
     this->data = data;
@@ -13,11 +14,13 @@ Priority_Node::Priority_Node(int data) {
     this->priority = 0;
 }
 
+
 Priority_Node::Priority_Node(int data, Priority_Node* next) {
     this->data = data;
     this->next = next;
     this->priority = 0;
 }
+
 
 Priority_Node::Priority_Node(int data, int priority) {
     this->data = data;
@@ -25,6 +28,8 @@ Priority_Node::Priority_Node(int data, int priority) {
     this->priority = priority;
 }
 
+
+// Destructor
 Priority_Node::~Priority_Node() {
     if (this->next != nullptr) {
         delete this->next;

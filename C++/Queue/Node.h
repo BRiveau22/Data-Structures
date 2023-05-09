@@ -1,22 +1,20 @@
-#pragma once
-
-
-// head
-//  5  ->  3  ->  8  ->  6  -> X
-// p1
-
+#ifndef NODE_H
+#define NODE_H
 
 class Node {
 private:
     int data;
     Node* next;
 
-    friend class LinkedList;
     friend class Queue;
 public:
+    // Constructors
     Node();
-    // Overloading
     Node(int data);
     Node(int data, Node* next);
+
+    // Destructor
     ~Node();
 };
+
+#endif

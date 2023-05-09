@@ -1,21 +1,20 @@
 #include "Queue.h"
-#include <iostream>
 
-// O(1)
+// Constructors
 Queue::Queue() {
     this->head = nullptr;
     this->tail = nullptr;
     this->size = 0;
 }
 
-// O(1)
+
 Queue::Queue(int data) {
     this->head = new Node(data);
     this->tail = head;
     this->size = 1;
 }
 
-// O(n)
+
 Queue::Queue(std::vector<int> vec) {
     if (vec.empty()) {
         this->head = nullptr;
@@ -36,18 +35,19 @@ Queue::Queue(std::vector<int> vec) {
     this->size = vec.size();
 }
 
+
+// Destructor
 Queue::~Queue() {
     delete this->head;
     this->head = nullptr;
     this->tail = nullptr;
 }
 
-// O(n)
-// O(1) with a tail pointer
+
+// Methods
 void Queue::enqueue(int data) {
     if (head == nullptr) {
         this->head = new Node(data);
-        // Assign tail
         this->tail = head;
     }
     else {
@@ -58,27 +58,20 @@ void Queue::enqueue(int data) {
     this->size++;
 }
 
-// O(n)
-// O(1) if `idx` == 0
+
 void Queue::dequeue() {
     Node* tmp = this->head;
 
-    // We found the element
     if (this->size > 0 || tmp != nullptr) {
-        // Deleting the head
         this->head = tmp->next;
-
-        // Without this, the Node destructor will delete
-        // every element in the list after 'temp'
         tmp->next = nullptr;
         delete tmp;
 
         this->size--;
-
     }
 }
 
-// O(n)
+
 int Queue::peek() {
     if (head != nullptr) {
         return this->head->data;
@@ -88,12 +81,12 @@ int Queue::peek() {
     }
 }
 
-// O(1)
+
 int Queue::get_size() {
     return this->size;
 }
 
-// O(n)
+
 std::string Queue::to_string() {
     std::string stringified;
     Node* tmp = this->head;

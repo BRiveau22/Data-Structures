@@ -1,7 +1,9 @@
-//Linked_List.h
+#ifndef LINKED_LIST_H
+#define LINKED_LIST_H
 #include "Node.h"
 #include <vector>
 #include <string>
+#include <iostream>
 
 class LinkedList {
 private:
@@ -9,11 +11,15 @@ private:
     unsigned int size;
 
 public:
-    LinkedList(); // this->head = nullptr;
+    // Constructors
+    LinkedList();
     LinkedList(int data);
     LinkedList(std::vector<int> vec);
+
+    // Destructor
     ~LinkedList();
 
+    // Methods
     void push_front(int data);
     void push_back(int data);
     void insert(int data, int idx); // For any `idx` > `size`, append the value
@@ -22,3 +28,5 @@ public:
     int get_size();
     std::string to_string();
 };
+
+#endif

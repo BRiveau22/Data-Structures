@@ -14,6 +14,8 @@ public:
     Stack();
     Stack(int data);
     Stack(std::vector<int> data);
+
+    // Destructor
     ~Stack();
 
     // Methods

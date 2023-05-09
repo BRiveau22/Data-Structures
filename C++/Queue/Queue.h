@@ -1,6 +1,7 @@
 #include "Node.h"
 #include <vector>
 #include <string>
+#include <iostream>
 
 class Queue {
 private:
@@ -9,16 +10,18 @@ private:
     unsigned int size;
 
 public:
-    Queue(); // this->head = nullptr;
+    // Constructors
+    Queue();
     Queue(int data);
     Queue(std::vector<int> vec);
+
+    // Destructor
     ~Queue();
 
-    //void push_front(int data); 
-    void enqueue(int data); //Rename to enqueue
-    //void insert(int data, int idx);
-    void dequeue(); //Modify to only remove the first element
-    int peek(); //Modify to only check the first element
+    // Methods
+    void enqueue(int data); 
+    void dequeue();
+    int peek();
     int get_size();
     std::string to_string();
 };

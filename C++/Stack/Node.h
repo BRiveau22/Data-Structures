@@ -9,9 +9,12 @@ private:
     friend class Stack;
 
 public:
+    // Constructors
     Node();
     Node(int data);
     Node(int data, Node* next);
+
+    // Destructor
     ~Node();
 };
 

@@ -1,11 +1,5 @@
-#pragma once
-
-
-// head
-//  5  ->  3  ->  8  ->  6  -> X
-// p1
-
-
+#ifndef PRIORITY_NODE_H
+#define PRIORITY_NODE_H
 class Priority_Node {
 private:
     int data;
@@ -14,10 +8,14 @@ private:
 
     friend class Priority_Queue;
 public:
+    // Constructors
     Priority_Node();
-    // Overloading
     Priority_Node(int data);
     Priority_Node(int data, Priority_Node* next);
     Priority_Node(int data, int priority);
+
+    // Destructor
     ~Priority_Node();
 };
+
+#endif

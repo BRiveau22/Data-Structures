@@ -1,6 +1,9 @@
+#ifndef PRIORITY_QUEUE_H
+#define PRIORITY_QUEUE_H
 #include "Priority_Node.h"
 #include <vector>
 #include <string>
+#include <iostream>
 
 class Priority_Queue {
 private:
@@ -9,14 +12,20 @@ private:
     unsigned int size;
 
 public:
-    Priority_Queue(); // this->head = nullptr;
+    // Constructors
+    Priority_Queue();
     Priority_Queue(int data);
     Priority_Queue(std::vector<int> vec);
+
+    // Destructor
     ~Priority_Queue();
 
-    void enqueue(int data, int priority); //Rename to enqueue
-    void dequeue(); //Modify to only remove the first element
-    std::pair<int, int> peek(); //Modify to only check the first element
+    // Methods
+    void enqueue(int data, int priority); 
+    void dequeue(); 
+    std::pair<int, int> peek();
     int get_size();
     std::string to_string();
 };
+
+#endif

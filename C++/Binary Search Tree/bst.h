@@ -1,3 +1,5 @@
+#ifndef BST_H
+#define BST_H
 #include <iostream>
 
 class BSTNode {
@@ -8,13 +10,18 @@ private:
 
 	friend class BSTree;
 public:
+	// Constructors
 	BSTNode(int data);
+
+	// Destructor
 	~BSTNode();
 };
 
 class BSTree {
 private:
 	BSTNode* root;
+
+	// Private methods
 	void destroy(BSTNode* current_node);
 	BSTNode* insert(BSTNode* current_node, int data);
 	BSTNode* remove(BSTNode* current_node, int data);
@@ -25,8 +32,13 @@ private:
 	BSTNode* find_ios(BSTNode* current_node);
 	BSTNode* find_iop(BSTNode* current_node);
 public:
+	// Constructors
 	BSTree();
+
+	// Destructor
 	~BSTree();
+
+	// Public methods
 	void insert(int data);
 	int height();
 	void remove(int data);
@@ -35,3 +47,5 @@ public:
 	void postorder(std::ostream& os = std::cout);
 	bool search(int data);
 };
+
+#endif
