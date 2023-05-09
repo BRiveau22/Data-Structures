@@ -51,7 +51,7 @@ class Stack{
             return temp.data;
         }
 
-        return null;
+        return -1;
     }
 
     top(){
@@ -59,7 +59,7 @@ class Stack{
             return this.top.data;
         }
 
-        return null;
+        return -1;
     }
 
     size(){
