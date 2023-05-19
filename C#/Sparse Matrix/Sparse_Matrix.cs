@@ -54,18 +54,16 @@ public class Sparse_Matrix{
                 else if (matrix[i][j] != 0){
                     Node temp = this.find_tail();
                     temp.next = new Node(i, j, matrix[i][j]);
+                    this.rows = temp.next.row + 1;
+                    this.cols = temp.next.col + 1;
                     this.num_elements++;
                 }
             }
         }
-
-        Node tail = this.find_tail();
-        this.rows = tail.row + 1;
-        this.cols = tail.col + 1;
     }
 
     // Private methods
-    private void find_tail(){
+    private Node find_tail(){
         Node temp = this.head;
         while(temp.next != null){
             temp = temp.next;
@@ -96,9 +94,9 @@ public class Sparse_Matrix{
     private int[][] multiply(Sparse_Matrix first, Sparse_Matrix second){
         int[][] out_matrix = new int[first.rows][second.cols];
         Node first_temp = first.head;
-        Node second_temp = second.head;
 
         while(first_temp != null){
+            Node second_temp = second.head;
             while(second_temp != null){
                 if(first_temp.col == second_temp.row){
                     out_matrix[first_temp.row][second_temp.col] += first_temp.value * second_temp.value;
@@ -151,30 +149,30 @@ public class Sparse_Matrix{
 	    while (current_node.next != nullptr) {
 	    	//Handles the case where the node is inserted in the middle
 	    	if (current_node.next.row > row || (current_node.next.row == row && current_node.next.col > col)) {
-	    		current_node.next = new Node(row, col, val, current_node.next);
+	    		current_node.next = new Node(row, col, value, current_node.next);
 	    		this.num_elements++;
 	    	}
 	    	//Handles the case where the node is inserted in the middle and the location is the same
 	    	else if (current_node.next.row == row && current_node.next.col == col) {
-	    		current_node.next.val = val;
+	    		current_node.next.val = value;
 	    	}
 	    	current_node = current_node.next;
 	    }
 
 	    //Handles the case where the node is inserted at the tail or the head of an otherwise empty matrix
 	    if (current_node.next == nullptr && (current_node.row <= row || (current_node.row == row && current_node.col < col))) {
-	    	current_node.next = new Node(row, col, val);
+	    	current_node.next = new Node(row, col, value);
 	    	this.num_elements++;
 	    }
 	    //Handles the case where the node is inserted at the head of an otherwise empty matrix
 	    else if (current_node == this.head && current_node.next == nullptr && (current_node.row > row || (current_node.row == row && current_node.col > col))) {
-	    	Node new_node = new Node(row, col, val, current_node);
+	    	Node new_node = new Node(row, col, value, current_node);
 	    	this.head = new_node;
 	    	this.num_elements++;
 	    }
 	    //Handles the case where the node is inserted at the tail, or the head of an otherwise empty matrix and the location is the same
-	    else if (current_node->next == nullptr && current_node->row == row && current_node.col == col) {
-	    	current_node.val = val;
+	    else if (current_node.next == nullptr && current_node.row == row && current_node.col == col) {
+	    	current_node.value = value;
 	    }
     }
 
