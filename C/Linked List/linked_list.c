@@ -19,7 +19,7 @@ void destroy(LinkedList* list){
 }
 
 void append(LinkedList* list, int data){
-    Node* new_node = create(int data);
+    Node* new_node = create(data);
     if(list->head == NULL){
         list->head = new_node;
     } else {
@@ -33,7 +33,7 @@ void append(LinkedList* list, int data){
 }
 
 void prepend(LinkedList* list, int data){
-    Node* new_node = create(int data);
+    Node* new_node = create(data);
     new_node->next = list->head;
     list->head = new_node;
     list->size++;
@@ -45,7 +45,7 @@ void insert(LinkedList* list, int data, int idx){
     } else if(idx >= list->size){
         append(list, data);
     } else {
-        Node* new_node = create(int data);
+        Node* new_node = create(data);
         Node* current = list->head;
         for(int i = 0; i < idx - 1; i++){
             current = current->next;
