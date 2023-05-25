@@ -167,7 +167,7 @@ class BST{
     }
 
     search(value){
-        current_node = this.root;
+        let current_node = this.root;
         while(current_node != null){
             if(current_node.data == value){
                 return true;
