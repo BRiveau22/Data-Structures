@@ -112,10 +112,6 @@ class DynamicArray{
     }
 
     exists(data){
-        if(this.find_first(data) != -1){
-            return true;
-        }
-
-        return false;
+        return this.find_first(data) != -1;
     }
 }

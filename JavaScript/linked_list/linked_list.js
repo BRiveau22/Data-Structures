@@ -15,7 +15,7 @@ class Node{
     }
 }
 
-class linked_list{
+class LinkedList{
     constructor(){
         this.head = null;
         this.size = 0;

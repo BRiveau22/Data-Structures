@@ -155,15 +155,15 @@ class BST{
     }
 
     preorder(){
-        print(this._preorder(this.root, ""));
+        console.log(this._preorder(this.root, ""));
     }
 
     inorder(){
-        print(this._inorder(this.root, ""));
+        console.log(this._inorder(this.root, ""));
     }
 
     postorder(){
-        print(this._postorder(this.root, ""));
+        console.log(this._postorder(this.root, ""));
     }
 
     search(value){

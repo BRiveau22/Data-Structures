@@ -30,7 +30,7 @@ class Stack{
 
     constructor(list){
         this.top = new Node(list[list.size - 1]);
-        current = this.top;
+        let current = this.top;
         for (let i = 1; i < list.size; i++){
             current.next = new Node(list[i]);
             current = current.next;
