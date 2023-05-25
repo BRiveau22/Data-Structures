@@ -1,83 +1,103 @@
-public class BSTNode{
+public class BSTNode
+{
     private int data;
     private BSTNode left;
     private BSTNode right;
 
     // Constructors
-    public BSTNode(){
+    public BSTNode()
+    {
         this.data = 0;
         this.left = null;
         this.right = null;
     }
 
-    public BSTNode(int data){
+    public BSTNode(int data)
+    {
         this.data = data;
         this.left = null;
         this.right = null;
     }
 }
 
-public class BSTree{
+public class BSTree
+{
     private BSTNode root;
     private int size;
 
     // Constructors
-    public BSTree(){
+    public BSTree()
+    {
         this.root = null;
         this.size = 0;
     }
 
     // Private Methods
-    private BSTNode insert(BSTNode current_node, int data){
-        if(current_node == null){
+    private BSTNode insert(BSTNode current_node, int data)
+    {
+        if (current_node == null)
+        {
             return new BSTNode(data);
         }
 
-        if(data < current_node.data){
+        if (data < current_node.data)
+        {
             current_node.left = this.insert(current_node.left, data);
         }
-        else {
+        else
+        {
             current_node.right = this.insert(current_node.right, data);
         }
 
         return current_node;
     }
-	private BSTNode remove(BSTNode current_node, int data){
-        if(current_node == null){
+    private BSTNode remove(BSTNode current_node, int data)
+    {
+        if (current_node == null)
+        {
             return current_node;
         }
 
-        if(current_node.data == data){
+        if (current_node.data == data)
+        {
             // 2 children
-            if(current_node.left != null && current_node.right != null){
+            if (current_node.left != null && current_node.right != null)
+            {
                 BSTNode ios = this.find_ios(current_node.right);
                 current_node.data = ios.data;
                 current_node.right = this.remove(current_node.right, ios.data);
             }
             // 1 child (right)
-            else if(current_node.right != null){
+            else if (current_node.right != null)
+            {
                 current_node = current_node.right;
             }
             // 1 child (left)
-            else if(current_node.left != null){
+            else if (current_node.left != null)
+            {
                 current_node = current_node.left;
             }
             // No children
-            else {
+            else
+            {
                 current_node = null;
             }
         }
-        else if (data < current_node.data){
+        else if (data < current_node.data)
+        {
             current_node.left = this.remove(current_node.left, data);
         }
-        else {
+        else
+        {
             current_node.right = this.remove(current_node.right, data);
         }
 
         return current_node;
     }
-	private int height(BSTNode root){
-        if(root == null){
+    private int height(BSTNode root)
+    {
+        if (root == null)
+        {
             return 0;
         }
 
@@ -86,9 +106,11 @@ public class BSTree{
 
         return Math.Max(left_height, right_height) + 1;
     }
-	private string preorder(BSTNode root, string str){
+    private string preorder(BSTNode root, string str)
+    {
         string out_str = str;
-        if(root == null){
+        if (root == null)
+        {
             return "";
         }
 
@@ -98,9 +120,11 @@ public class BSTree{
 
         return out_str;
     }
-	private string inorder(BSTNode root, string str){
+    private string inorder(BSTNode root, string str)
+    {
         string out_str = str;
-        if(root == null){
+        if (root == null)
+        {
             return "";
         }
 
@@ -110,9 +134,11 @@ public class BSTree{
 
         return out_str;
     }
-	private void postorder(BSTNode root, string str){
+    private void postorder(BSTNode root, string str)
+    {
         string out_str = str;
-        if(root == null){
+        if (root == null)
+        {
             return "";
         }
 
@@ -122,15 +148,19 @@ public class BSTree{
 
         return out_str;
     }
-	private BSTNode find_ios(BSTNode current_node){
-        if(current_node.left == null){
+    private BSTNode find_ios(BSTNode current_node)
+    {
+        if (current_node.left == null)
+        {
             return current_node;
         }
 
         return this.find_ios(current_node.left);
     }
-	private BSTNode find_iop(BSTNode current_node){
-        if(current_node.right == null){
+    private BSTNode find_iop(BSTNode current_node)
+    {
+        if (current_node.right == null)
+        {
             return current_node;
         }
 
@@ -138,41 +168,54 @@ public class BSTree{
     }
 
     // Public Methods
-    public void insert(int data){
-        if(!this.search(data)){
+    public void insert(int data)
+    {
+        if (!this.search(data))
+        {
             this.root = this.insert(this.root, data);
             this.size++;
         }
     }
-	public int height(){
+    public int height()
+    {
         return this.height(this.root);
     }
-	public void remove(int data){
-        if(this.search(data)){
+    public void remove(int data)
+    {
+        if (this.search(data))
+        {
             this.root = this.remove(this.root, data);
             this.size--;
         }
     }
-	public void preorder(){
+    public void preorder()
+    {
         print(this.preorder(this.root, ""));
     }
-	public void inorder(){
+    public void inorder()
+    {
         print(this.inorder(this.root, ""));
     }
-	public void postorder(){
+    public void postorder()
+    {
         print(this.postorder(this.root, ""));
     }
-	public bool search(int data){
+    public bool search(int data)
+    {
         BSTNode current_node = this.root;
 
-        while(current_node != null){
-            if (data == current_node.data){
+        while (current_node != null)
+        {
+            if (data == current_node.data)
+            {
                 return true;
             }
-            else if (data < current_node.data){
+            else if (data < current_node.data)
+            {
                 current_node = current_node.left;
             }
-            else {
+            else
+            {
                 current_node = current_node.right;
             }
         }

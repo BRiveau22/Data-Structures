@@ -1,32 +1,32 @@
-class BSTNode{
+class BSTNode {
     // Constructors
-    constructor(){
+    constructor() {
         this.value = 0;
         this.left = null;
         this.right = null;
     }
 
-    constructor(value){
+    constructor(value) {
         this.value = value;
         this.left = null;
         this.right = null;
     }
 }
 
-class BST{
+class BST {
     // Constructors
-    constructor(){
+    constructor() {
         this.root = null;
         this.size = 0;
     }
 
     // Helper Methods
-    _insert(node, value){
-        if (node == null){
+    _insert(node, value) {
+        if (node == null) {
             return Node(value);
         }
 
-        if (data < node.data){
+        if (data < node.data) {
             node.left = this._insert(node.left, data);
         }
         else {
@@ -36,24 +36,24 @@ class BST{
         return node;
     }
 
-    _remove(node, value){
-        if(node == null){
+    _remove(node, value) {
+        if (node == null) {
             return node;
         }
 
-        if(value == node.data){
+        if (value == node.data) {
             // 2 Children
-            if(node.left != null && node.right != null){
+            if (node.left != null && node.right != null) {
                 let ios = this._findIOS(node.right);
                 node.data = ios.data;
                 node.right = this._remove(node.right, ios.data);
             }
             // 1 Child (right)
-            else if(node.right != null){
+            else if (node.right != null) {
                 return node.right;
             }
             // 1 Child (left)
-            else if(node.left != null){
+            else if (node.left != null) {
                 return node.left;
             }
             // No Children
@@ -61,7 +61,7 @@ class BST{
                 return null;
             }
         }
-        else if(value < node.data){
+        else if (value < node.data) {
             node.left = this._remove(node.left, value);
         }
         else {
@@ -71,24 +71,24 @@ class BST{
         return node;
     }
 
-    _findIOS(node){
-        if(node.left == null){
+    _findIOS(node) {
+        if (node.left == null) {
             return node;
         }
 
         return this._findIOS(node.left);
     }
 
-    _findIOP(node){
-        if(node.right == null){
+    _findIOP(node) {
+        if (node.right == null) {
             return node;
         }
 
         return this._findIOP(node.right);
     }
 
-    _height(root){
-        if(root == null){
+    _height(root) {
+        if (root == null) {
             return 0;
         }
 
@@ -98,9 +98,9 @@ class BST{
         return Math.max(left_height, right_height) + 1;
     }
 
-    _preorder(root, string){
+    _preorder(root, string) {
         let outString = string;
-        if (root == null){
+        if (root == null) {
             return "";
         }
 
@@ -111,9 +111,9 @@ class BST{
         return outString;
     }
 
-    _inorder(root, string){
+    _inorder(root, string) {
         let outString = string;
-        if (root == null){
+        if (root == null) {
             return "";
         }
 
@@ -124,9 +124,9 @@ class BST{
         return outString;
     }
 
-    _postorder(root, string){
+    _postorder(root, string) {
         let outString = string;
-        if (root == null){
+        if (root == null) {
             return "";
         }
 
@@ -138,41 +138,41 @@ class BST{
     }
 
     // Methods
-    insert(value){
+    insert(value) {
         this.root = this._insert(this.root, value);
     }
 
-    remove(value){
+    remove(value) {
         this.root = this._remove(this.root, value);
     }
 
-    height(){
-        if(this.root == null){
+    height() {
+        if (this.root == null) {
             return -1;
         }
 
         return this._height(this.root);
     }
 
-    preorder(){
+    preorder() {
         console.log(this._preorder(this.root, ""));
     }
 
-    inorder(){
+    inorder() {
         console.log(this._inorder(this.root, ""));
     }
 
-    postorder(){
+    postorder() {
         console.log(this._postorder(this.root, ""));
     }
 
-    search(value){
+    search(value) {
         let current_node = this.root;
-        while(current_node != null){
-            if(current_node.data == value){
+        while (current_node != null) {
+            if (current_node.data == value) {
                 return true;
             }
-            else if(value < current_node.data){
+            else if (value < current_node.data) {
                 current_node = current_node.left;
             }
             else {

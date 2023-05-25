@@ -4,9 +4,10 @@
 #include <string>
 #include <vector>
 
-class Stack{
+class Stack
+{
 private:
-    Node* top;
+    Node *top;
     unsigned int size;
 
 public:

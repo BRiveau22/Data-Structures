@@ -25,6 +25,7 @@ class PriorityNode:
         self.priority = priority
         self.next = next
 
+
 class PriorityQueue:
     # Constructors
     def __init__(self):
@@ -49,26 +50,26 @@ class PriorityQueue:
 
     # Methods
     def enqueue(self, data, priority):
-        if(self.is_empty()):
+        if self.is_empty():
             self.front = PriorityNode(data, priority)
             self.back = self.front
             self.size += 1
             return
 
-        if(priority < self.front.priority):
+        if priority < self.front.priority:
             self.front = PriorityNode(data, priority, self.front)
             self.size += 1
             return
 
         current = self.front
-        while(current.next != None and current.next.priority <= priority):
+        while current.next != None and current.next.priority <= priority:
             current = current.next
 
         current.next = PriorityNode(data, priority, current.next)
         self.size += 1
 
     def dequeue(self):
-        if(self.is_empty()):
+        if self.is_empty():
             print("Queue is empty")
             return
 
@@ -76,14 +77,14 @@ class PriorityQueue:
         self.size -= 1
 
     def peek(self):
-        if(self.is_empty()):
+        if self.is_empty():
             print("Queue is empty")
             return -1
 
         return self.front.data
-    
+
     def is_empty(self):
         return self.size == 0
-    
+
     def get_size(self):
         return self.size

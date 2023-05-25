@@ -24,7 +24,7 @@ class DynamicArray:
         self.capacity = length
         self.scale_factor = scale_factor
 
-    def __init__ (self, data, scale_factor):
+    def __init__(self, data, scale_factor):
         self.data = data
         self.length = len(data)
         self.capacity = self.size
@@ -40,14 +40,14 @@ class DynamicArray:
         self.capacity *= self.scale_factor
 
     def append(self, value):
-        if(self.length == self.capacity):
+        if self.length == self.capacity:
             self.resize()
 
         self.data[self.length] = value
         self.length += 1
 
     def prepend(self, value):
-        if(self.length == self.capacity):
+        if self.length == self.capacity:
             self.resize()
 
         for i in range(1, self.length + 1):
@@ -57,15 +57,15 @@ class DynamicArray:
         self.length += 1
 
     def insert(self, idx, value):
-        if (idx < 1):
+        if idx < 1:
             self.prepend(value)
             return
-        
-        if (idx >= self.length):
+
+        if idx >= self.length:
             self.append(value)
             return
-        
-        if(self.length == self.capacity):
+
+        if self.length == self.capacity:
             self.resize()
 
         for i in range(idx, self.length + 1):
@@ -76,17 +76,17 @@ class DynamicArray:
 
     def find_first(self, data):
         for i in range(self.length):
-            if(self.data[i] == data):
+            if self.data[i] == data:
                 return i
-            
+
         return -1
-    
+
     def find_last(self, data):
         for i in range(self.length - 1, -1, -1):
-            if(self.data[i] == data):
+            if self.data[i] == data:
                 return i
-            
+
         return -2
-    
+
     def exists(self, data):
         return self.find_first(data) != -1

@@ -5,9 +5,10 @@
 #include <string>
 #include <iostream>
 
-class LinkedList {
+class LinkedList
+{
 private:
-    Node* head;
+    Node *head;
     unsigned int size;
 
 public:

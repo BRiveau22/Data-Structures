@@ -1,16 +1,19 @@
 #include "Linked_List.h"
 
-LinkedList* create(){
-    LinkedList* list = (LinkedList*)malloc(sizeof(LinkedList));
+LinkedList *create()
+{
+    LinkedList *list = (LinkedList *)malloc(sizeof(LinkedList));
     list->head = NULL;
     list->size = 0;
     return list;
 }
 
-void destroy(LinkedList* list){
-    Node* current = list->head;
-    Node* next;
-    while(current != NULL){
+void destroy(LinkedList *list)
+{
+    Node *current = list->head;
+    Node *next;
+    while (current != NULL)
+    {
         next = current->next;
         free(current);
         current = next;
@@ -18,13 +21,18 @@ void destroy(LinkedList* list){
     free(list);
 }
 
-void append(LinkedList* list, int data){
-    Node* new_node = create(data);
-    if(list->head == NULL){
+void append(LinkedList *list, int data)
+{
+    Node *new_node = create(data);
+    if (list->head == NULL)
+    {
         list->head = new_node;
-    } else {
-        Node* current = list->head;
-        while(current->next != NULL){
+    }
+    else
+    {
+        Node *current = list->head;
+        while (current->next != NULL)
+        {
             current = current->next;
         }
         current->next = new_node;
@@ -32,22 +40,30 @@ void append(LinkedList* list, int data){
     list->size++;
 }
 
-void prepend(LinkedList* list, int data){
-    Node* new_node = create(data);
+void prepend(LinkedList *list, int data)
+{
+    Node *new_node = create(data);
     new_node->next = list->head;
     list->head = new_node;
     list->size++;
 }
 
-void insert(LinkedList* list, int data, int idx){
-    if(idx < 1){
+void insert(LinkedList *list, int data, int idx)
+{
+    if (idx < 1)
+    {
         prepend(list, data);
-    } else if(idx >= list->size){
+    }
+    else if (idx >= list->size)
+    {
         append(list, data);
-    } else {
-        Node* new_node = create(data);
-        Node* current = list->head;
-        for(int i = 0; i < idx - 1; i++){
+    }
+    else
+    {
+        Node *new_node = create(data);
+        Node *current = list->head;
+        for (int i = 0; i < idx - 1; i++)
+        {
             current = current->next;
         }
         new_node->next = current->next;
@@ -56,20 +72,25 @@ void insert(LinkedList* list, int data, int idx){
     }
 }
 
-void remove(LinkedList* list, int data){
-    Node* current = list->head;
-    while(current->next->data != data){
+void remove(LinkedList *list, int data)
+{
+    Node *current = list->head;
+    while (current->next->data != data)
+    {
         current = current->next;
     }
-    Node* temp = current->next;
+    Node *temp = current->next;
     current->next = current->next->next;
     free(temp);
 }
 
-bool contains(LinkedList* list, int data) {
-    Node* current = list->head;
-    while(current != NULL){
-        if(current->data == data){
+bool contains(LinkedList *list, int data)
+{
+    Node *current = list->head;
+    while (current != NULL)
+    {
+        if (current->data == data)
+        {
             return true;
         }
         current = current->next;
@@ -77,9 +98,11 @@ bool contains(LinkedList* list, int data) {
     return false;
 }
 
-void print(LinkedList* list) {
-    Node* current = list->head;
-    while(current != NULL){
+void print(LinkedList *list)
+{
+    Node *current = list->head;
+    while (current != NULL)
+    {
         printf("%d ", current->data);
         current = current->next;
     }

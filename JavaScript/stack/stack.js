@@ -1,50 +1,50 @@
-class Node{
+class Node {
     // Constructors
-    constructor(){
+    constructor() {
         this.data = null;
         this.next = null;
     }
 
-    constructor(value){
+    constructor(value) {
         this.data = value;
         this.next = null;
     }
 
-    constructor(value, next){
+    constructor(value, next) {
         this.data = value;
         this.next = next;
     }
 }
 
-class Stack{
+class Stack {
     // Constructors
-    constructor(){
+    constructor() {
         this.top = null;
         this.size = 0;
     }
 
-    constructor(value){
+    constructor(value) {
         this.top = new Node(value);
         this.size = 1;
     }
 
-    constructor(list){
+    constructor(list) {
         this.top = new Node(list[list.size - 1]);
         let current = this.top;
-        for (let i = 1; i < list.size; i++){
+        for (let i = 1; i < list.size; i++) {
             current.next = new Node(list[i]);
             current = current.next;
         }
     }
 
     // Methods
-    push(value){
+    push(value) {
         this.top = new Node(value, this.top);
         this.size++;
     }
 
-    pop(){
-        if(!this.isEmpty()){
+    pop() {
+        if (!this.isEmpty()) {
             let temp = this.top;
             this.top = this.top.next;
             this.size--;
@@ -54,19 +54,19 @@ class Stack{
         return -1;
     }
 
-    peek(){
-        if(!this.isEmpty()){
+    peek() {
+        if (!this.isEmpty()) {
             return this.top.data;
         }
 
         return -1;
     }
 
-    size(){
+    size() {
         return this.size;
     }
 
-    isEmpty(){
+    isEmpty() {
         return this.size == 0;
     }
 }

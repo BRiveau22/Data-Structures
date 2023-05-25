@@ -14,7 +14,7 @@ public class LinkedList {
         this.size = 1;
     }
 
-    public LinkedList (int[] list){
+    public LinkedList(int[] list) {
         this.head = new Node(list[0]);
         this.size = 1;
         for (int i = 1; i < list.length; i++) {
@@ -38,7 +38,7 @@ public class LinkedList {
         this.size++;
     }
 
-    public void append(int data){
+    public void append(int data) {
         Node newNode = new Node(data);
         Node current = this.head;
         while (current.getNext() != null) {
@@ -48,14 +48,12 @@ public class LinkedList {
         this.size++;
     }
 
-    public void insert(int data, int idx){
+    public void insert(int data, int idx) {
         if (idx < 1) {
             this.prepend(data);
-        }
-        else if (idx >= this.size){
+        } else if (idx >= this.size) {
             this.append(data);
-        }
-        else {
+        } else {
             Node newNode = new Node(data);
             Node current = this.head;
             for (int i = 0; i < idx - 1; i++) {
@@ -67,13 +65,12 @@ public class LinkedList {
         }
     }
 
-    public void remove(int data){
+    public void remove(int data) {
         Node current = this.head;
         if (current.getData() == data) {
             this.head = current.getNext();
             this.size--;
-        }
-        else {
+        } else {
             while (current.getNext() != null) {
                 if (current.getNext().getData() == data) {
                     current.setNext(current.getNext().getNext());
@@ -85,7 +82,7 @@ public class LinkedList {
         }
     }
 
-    public boolean contains(int data){
+    public boolean contains(int data) {
         Node current = this.head;
         while (current != null) {
             if (current.getData() == data) {
@@ -96,7 +93,7 @@ public class LinkedList {
         return false;
     }
 
-    public void printList(){
+    public void printList() {
         Node current = this.head;
         while (current != null) {
             System.out.print(current.getData() + " ");

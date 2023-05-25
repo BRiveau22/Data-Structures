@@ -5,10 +5,11 @@
 #include <string>
 #include <iostream>
 
-class Priority_Queue {
+class Priority_Queue
+{
 private:
-    Priority_Node* head;
-    Priority_Node* tail;
+    Priority_Node *head;
+    Priority_Node *tail;
     unsigned int size;
 
 public:
@@ -21,8 +22,8 @@ public:
     ~Priority_Queue();
 
     // Methods
-    void enqueue(int data, int priority); 
-    void dequeue(); 
+    void enqueue(int data, int priority);
+    void dequeue();
     std::pair<int, int> peek();
     int get_size();
     std::string to_string();

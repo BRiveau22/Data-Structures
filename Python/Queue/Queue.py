@@ -1,5 +1,5 @@
 class Node:
-     # Constructors
+    # Constructors
     def __init__(self):
         self.data = 0
         self.next = None
@@ -7,10 +7,11 @@ class Node:
     def __init__(self, data):
         self.data = data
         self.next = None
-    
+
     def __init__(self, data, next):
         self.data = data
         self.next = next
+
 
 class Queue:
     # Constructors
@@ -36,18 +37,18 @@ class Queue:
 
     # Methods
     def enqueue(self, data):
-        if(self.size == 0):
+        if self.size == 0:
             self.front = Node(data)
             self.back = self.front
             self.size += 1
             return
-        
+
         self.back.next = Node(data)
         self.back = self.back.next
         self.size += 1
 
     def dequeue(self):
-        if(self.size == 0):
+        if self.size == 0:
             print("Queue is empty")
             return
 
@@ -55,14 +56,14 @@ class Queue:
         self.size -= 1
 
     def peek(self):
-        if(self.size == 0):
+        if self.size == 0:
             print("Queue is empty")
             return -1
 
         return self.front.data
-    
+
     def get_size(self):
         return self.size
-    
+
     def is_empty(self):
         return self.size == 0

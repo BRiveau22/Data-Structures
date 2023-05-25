@@ -7,10 +7,11 @@ class Node:
     def __init__(self, data):
         self.data = data
         self.next = None
-    
+
     def __init__(self, data, next):
         self.data = data
         self.next = next
+
 
 class LinkedList:
     # Contstructors
@@ -41,7 +42,7 @@ class LinkedList:
 
         while current.next() != None:
             current = current.next
-        
+
         current.next = Node(data)
 
     def insert(self, data, idx):
@@ -58,7 +59,7 @@ class LinkedList:
 
     def remove(self, data):
         current = self.head
-        while(current.next != None):
+        while current.next != None:
             if current.next.data == data:
                 current.next = current.next.next
                 return
@@ -71,9 +72,9 @@ class LinkedList:
                 return True
             current = current.next
         return False
-    
+
     def print(self):
         current = self.head
         while current != None:
-            print(current.data + ' ')
+            print(current.data + " ")
             current = current.next

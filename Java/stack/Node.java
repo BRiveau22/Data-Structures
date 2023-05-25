@@ -10,31 +10,31 @@ public class Node {
         this.next = null;
     }
 
-    public Node(int data){
+    public Node(int data) {
         this.data = data;
         this.next = null;
     }
 
-    public Node(int data, Node next){
+    public Node(int data, Node next) {
         this.data = data;
         this.next = next;
     }
 
     // Getters
-    public int getData(){
+    public int getData() {
         return this.data;
     }
 
-    public Node getNext(){
+    public Node getNext() {
         return this.next;
     }
 
     // Setters
-    public void setData(int data){
+    public void setData(int data) {
         this.data = data;
     }
 
-    public void setNext(Node next){
+    public void setNext(Node next) {
         this.next = next;
     }
 }

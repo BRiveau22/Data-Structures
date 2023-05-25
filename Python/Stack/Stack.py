@@ -12,6 +12,7 @@ class Node:
         self.data = data
         self.next = prev
 
+
 class Stack:
     # Constructors
     def __init__(self):
@@ -48,12 +49,12 @@ class Stack:
             self.top = self.top.next
             self.size -= 1
             return data
-        
+
     def peek(self):
         return self.top.data
-    
+
     def size(self):
         return self.size
-    
+
     def is_empty(self):
         return self.size == 0

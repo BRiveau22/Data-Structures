@@ -1,46 +1,46 @@
-class Node{
-    constructor(){
+class Node {
+    constructor() {
         this.data = 0;
         this.next = null;
     }
 
-    constructor(data){
+    constructor(data) {
         this.data = data;
         this.next = null;
     }
 
-    constructor (data, next) {
+    constructor(data, next) {
         this.data = data;
         this.next = next;
     }
 }
 
-class Queue{
-    constructor(){
+class Queue {
+    constructor() {
         this.front = null;
         this.back = null;
         this.size = 0;
     }
 
-    constructor(data){
+    constructor(data) {
         this.front = new Node(data);
         this.back = this.front;
         this.size = 1;
     }
 
-    constructor(arr){
+    constructor(arr) {
         this.front = new Node(arr[0]);
         this.back = this.front;
         this.size = 1;
-        for(const element of arr){
+        for (const element of arr) {
             this.back.next = new Node(element);
             this.back = this.back.next;
             this.size++;
         }
     }
 
-    enqueue(data){
-        if(this.isEmpty()){
+    enqueue(data) {
+        if (this.isEmpty()) {
             this.front = new Node(data);
             this.back = this.front;
             this.size++;
@@ -52,13 +52,13 @@ class Queue{
         this.size++;
     }
 
-    dequeue(){
-        if(this.isEmpty()){
+    dequeue() {
+        if (this.isEmpty()) {
             print("Queue is empty");
             return;
         }
 
-        if(this.size == 1){
+        if (this.size == 1) {
             this.front = null;
             this.back = null;
             this.size--;
@@ -69,8 +69,8 @@ class Queue{
         this.size--;
     }
 
-    peek(){
-        if(this.isEmpty()){
+    peek() {
+        if (this.isEmpty()) {
             print("Queue is empty");
             return -1;
         }
@@ -78,11 +78,11 @@ class Queue{
         return this.front.data;
     }
 
-    isEmpty(){
+    isEmpty() {
         return this.size == 0;
     }
 
-    getSize(){
+    getSize() {
         return this.size;
     }
 }

@@ -10,17 +10,17 @@ public class Stack {
         this.size = 0;
     }
 
-    public Stack(int data){
+    public Stack(int data) {
         this.top = new Node(data);
         this.size = 1;
     }
 
-    public Stack(int[] list){
+    public Stack(int[] list) {
         this.top = new Node(list[0]);
         this.size = 1;
 
         Node currentNode = this.top;
-        for (int i = 1; i < list.length; i++){
+        for (int i = 1; i < list.length; i++) {
             currentNode.setNext(new Node(list[i]));
             currentNode = currentNode.getNext();
             this.size++;
@@ -28,15 +28,15 @@ public class Stack {
     }
 
     // Methods
-    public void push(int data){
+    public void push(int data) {
         Node newNode = new Node(data);
         newNode.setNext(this.top);
         this.top = newNode;
         this.size++;
     }
 
-    public int pop(){
-        if(!this.isEmpty()){
+    public int pop() {
+        if (!this.isEmpty()) {
             int tempData = this.top.getData();
             this.top = this.top.getNext();
             this.size--;
@@ -46,19 +46,19 @@ public class Stack {
         return -1;
     }
 
-    public int peek(){
-        if(!this.isEmpty()){
+    public int peek() {
+        if (!this.isEmpty()) {
             return this.top.getData();
         }
 
         return -1;
     }
 
-    public int size(){
+    public int size() {
         return this.size;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return this.size == 0;
     }
 }

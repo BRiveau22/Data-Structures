@@ -3,10 +3,11 @@
 #include <string>
 #include <iostream>
 
-class Queue {
+class Queue
+{
 private:
-    Node* head;
-    Node* tail;
+    Node *head;
+    Node *tail;
     unsigned int size;
 
 public:
@@ -19,7 +20,7 @@ public:
     ~Queue();
 
     // Methods
-    void enqueue(int data); 
+    void enqueue(int data);
     void dequeue();
     int peek();
     int get_size();

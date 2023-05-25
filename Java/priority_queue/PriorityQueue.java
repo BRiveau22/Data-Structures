@@ -1,25 +1,24 @@
 package priority_queue;
 
-public class PriorityQueue{
+public class PriorityQueue {
     private PriorityNode front;
     private PriorityNode back;
     private int size;
 
-
     // Constructors
-    public PriorityQueue(){
+    public PriorityQueue() {
         this.front = null;
         this.back = null;
         this.size = 0;
     }
 
-    public PriorityQueue(int data){
+    public PriorityQueue(int data) {
         this.front = new PriorityNode(data);
         this.back = this.front;
         this.size = 1;
     }
 
-    public PriorityQueue(int[] arr){
+    public PriorityQueue(int[] arr) {
         this.front = new PriorityNode(arr[0]);
         this.back = this.front;
         this.size = 1;
@@ -31,13 +30,12 @@ public class PriorityQueue{
     }
 
     // Methods
-    public void enqueue(int data, int priority){
+    public void enqueue(int data, int priority) {
         PriorityNode newNode = new PriorityNode(data, priority);
-        if(this.size == 0){
+        if (this.size == 0) {
             this.front = newNode;
             this.back = newNode;
-        }
-        else {
+        } else {
             PriorityNode current = this.front;
             while (current.getNext() != null && current.getNext().getPriority() <= priority) {
                 current = current.getNext();
@@ -45,12 +43,10 @@ public class PriorityQueue{
             if (current == this.front && current.getPriority() > priority) {
                 newNode.setNext(current);
                 this.front = newNode;
-            }
-            else if (current == this.back && current.getPriority() <= priority) {
+            } else if (current == this.back && current.getPriority() <= priority) {
                 current.setNext(newNode);
                 this.back = newNode;
-            }
-            else {
+            } else {
                 newNode.setNext(current.getNext());
                 current.setNext(newNode);
             }
@@ -59,25 +55,25 @@ public class PriorityQueue{
         this.size++;
     }
 
-    public void dequeue(){
-        if(this.size == 0){
+    public void dequeue() {
+        if (this.size == 0) {
             System.out.println("Queue is empty");
             return;
         }
 
-        if(this.size == 1){
+        if (this.size == 1) {
             this.front = null;
             this.back = null;
             this.size--;
             return;
         }
-        
+
         this.front = this.front.getNext();
         this.size--;
     }
 
-    public int peek(){
-        if(this.size == 0){
+    public int peek() {
+        if (this.size == 0) {
             System.out.println("Queue is empty");
             return -1;
         }
@@ -85,7 +81,7 @@ public class PriorityQueue{
         return this.front.getData();
     }
 
-    public int getSize(){
+    public int getSize() {
         return this.size;
     }
 }

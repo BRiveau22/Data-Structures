@@ -3,7 +3,8 @@
 #include <string>
 #include <vector>
 
-class Hash_Table{
+class Hash_Table
+{
 private:
     std::vector<int> _table;
     int _mode;
@@ -19,6 +20,7 @@ private:
     int _digit_folding_hash(int key);
     int _mult_hash(int key, double a);
     void _resize_table();
+
 public:
     // Constructors
     Hash_Table(int mode);

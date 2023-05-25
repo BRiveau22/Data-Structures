@@ -1,35 +1,35 @@
-class Node{
-    constructor(){
+class Node {
+    constructor() {
         this.data = 0;
         this.next = null;
     }
 
-    constructor(data){
+    constructor(data) {
         this.data = data;
         this.next = null;
     }
 
-    constructor (data, next) {
+    constructor(data, next) {
         this.data = data;
         this.next = next;
     }
 }
 
-class LinkedList{
-    constructor(){
+class LinkedList {
+    constructor() {
         this.head = null;
         this.size = 0;
     }
 
-    append(data){
-        if(this.head == null){
+    append(data) {
+        if (this.head == null) {
             this.head = new Node(data);
             this.size++;
             return;
         }
 
         let current = this.head;
-        while(current.next != null){
+        while (current.next != null) {
             current = current.next;
         }
 
@@ -37,8 +37,8 @@ class LinkedList{
         this.size++;
     }
 
-    prepend(data){
-        if(this.head == null){
+    prepend(data) {
+        if (this.head == null) {
             this.head = new Node(data);
             this.size++;
             return;
@@ -50,18 +50,18 @@ class LinkedList{
         this.size++;
     }
 
-    insert(data, index){
-        if(index < 1){
+    insert(data, index) {
+        if (index < 1) {
             this.prepend(data);
             return;
         }
-        else if (index >= this.size){
+        else if (index >= this.size) {
             this.append(data);
             return;
         }
-        
+
         let current = this.head;
-        for (let i = 0; i < index - 1; i++){
+        for (let i = 0; i < index - 1; i++) {
             current = current.next;
         }
         let new_node = new Node(data);
@@ -70,20 +70,20 @@ class LinkedList{
         this.size++;
     }
 
-    remove(data){
-        if(this.head == null){
+    remove(data) {
+        if (this.head == null) {
             return;
         }
 
-        if(this.head.data == data){
+        if (this.head.data == data) {
             this.head = this.head.next;
             this.size--;
             return;
         }
 
         let current = this.head;
-        while(current.next != null){
-            if(current.next.data == data){
+        while (current.next != null) {
+            if (current.next.data == data) {
                 current.next = current.next.next;
                 this.size--;
                 return;
@@ -92,19 +92,19 @@ class LinkedList{
         }
     }
 
-    contains(data){
+    contains(data) {
         let current = this.head;
-        while(current != null){
-            if(current.data == data){
+        while (current != null) {
+            if (current.data == data) {
                 return true;
             }
             current = current.next;
         }
     }
 
-    print(){
+    print() {
         let current = this.head;
-        while(current != null){
+        while (current != null) {
             console.log(current.data);
             current = current.next;
         }
