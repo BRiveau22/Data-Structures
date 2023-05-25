@@ -32,8 +32,8 @@ class Queue{
         this.front = new Node(arr[0]);
         this.back = this.front;
         this.size = 1;
-        for(let i = 0; i < arr.length; i++){
-            this.back.next = new Node(arr[i]);
+        for(const element of arr){
+            this.back.next = new Node(element);
             this.back = this.back.next;
             this.size++;
         }

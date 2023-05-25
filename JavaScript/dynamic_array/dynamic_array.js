@@ -84,7 +84,7 @@ class DynamicArray{
             this.resize();
         }
 
-        for(let i = idx; i > this.array.length + 1; i++){
+        for(let i = idx; i < this.array.length + 1; i++){
             this.array[i] = this.array[i - 1];
         }
 
