@@ -10,7 +10,7 @@ DynamicArray *create()
     return array;
 }
 
-DynamicArray *create(double scale_factor, int capacity)
+DynamicArray *create_capacity(double scale_factor, int capacity)
 {
     DynamicArray *array = (DynamicArray *)malloc(sizeof(DynamicArray));
     array->data = (int *)malloc(sizeof(int) * capacity);
@@ -20,7 +20,7 @@ DynamicArray *create(double scale_factor, int capacity)
     return array;
 }
 
-DynamicArray *create(double scale_factor, int length, int default_value)
+DynamicArray *create_default_value(double scale_factor, int length, int default_value)
 {
     DynamicArray *array = (DynamicArray *)malloc(sizeof(DynamicArray));
     array->data = (int *)malloc(sizeof(int) * length);

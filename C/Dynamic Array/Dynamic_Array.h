@@ -10,10 +10,15 @@ typedef struct DynamicArray
     double scale_factor;
 } DynamicArray;
 
+// Constructors
 DynamicArray *create();
-DynamicArray *create(double scale_factor, int capacity);
-DynamicArray *create(double scale_factor, int length, int default_value);
+DynamicArray *create_capacity(double scale_factor, int capacity);
+DynamicArray *create_default_value(double scale_factor, int length, int default_value);
+
+// Destructor
 void destroy(DynamicArray *array);
+
+// Methods
 void resize(DynamicArray *array);
 void append(DynamicArray *, int data);
 void prepend(DynamicArray *, int data);
