@@ -8,7 +8,7 @@ class HashTable {
         this._table = new int[this.tableSize];
 
         if (mode == 3) {
-            // Assign a_value to a random double between 0 and 1
+            this._a = Math.random();
         }
     }
 
@@ -20,7 +20,7 @@ class HashTable {
         this._table = new int[this.tableSize];
 
         if (mode == 3) {
-            // Assign a_value to a random double between 0 and 1
+            this._a = Math.random();
         }
     }
 
