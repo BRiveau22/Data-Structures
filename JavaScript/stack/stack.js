@@ -1,54 +1,54 @@
 class Node {
     // Constructors
     constructor() {
-        this.data = null;
-        this.next = null;
+        this._data = null;
+        this._next = null;
     }
 
     constructor(value) {
-        this.data = value;
-        this.next = null;
+        this._data = value;
+        this._next = null;
     }
 
     constructor(value, next) {
-        this.data = value;
-        this.next = next;
+        this._data = value;
+        this._next = next;
     }
 }
 
 class Stack {
     // Constructors
     constructor() {
-        this.top = null;
-        this.size = 0;
+        this._top = null;
+        this._size = 0;
     }
 
     constructor(value) {
-        this.top = new Node(value);
-        this.size = 1;
+        this._top = Node(value);
+        this._size = 1;
     }
 
     constructor(list) {
-        this.top = new Node(list[list.size - 1]);
-        let current = this.top;
-        for (let i = 1; i < list.size; i++) {
-            current.next = new Node(list[i]);
-            current = current.next;
+        this._top = Node(list[list.length - 1]);
+        let current = this._top;
+        for (let i = 1; i < list.length; i++) {
+            current._next = Node(list[i]);
+            current = current._next;
         }
     }
 
-    // Methods
+    // Public Methods
     push(value) {
-        this.top = new Node(value, this.top);
-        this.size++;
+        this._top = Node(value, this._top);
+        this._size++;
     }
 
     pop() {
         if (!this.isEmpty()) {
-            let temp = this.top;
-            this.top = this.top.next;
-            this.size--;
-            return temp.data;
+            let temp = this._top;
+            this._top = this._top._next;
+            this._size--;
+            return temp._data;
         }
 
         return -1;
@@ -56,17 +56,17 @@ class Stack {
 
     peek() {
         if (!this.isEmpty()) {
-            return this.top.data;
+            return this._top._data;
         }
 
         return -1;
     }
 
     size() {
-        return this.size;
+        return this._size;
     }
 
     isEmpty() {
-        return this.size == 0;
+        return this._size == 0;
     }
 }

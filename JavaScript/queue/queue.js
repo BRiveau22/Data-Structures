@@ -1,88 +1,91 @@
 class Node {
+    // Constructors
     constructor() {
-        this.data = 0;
-        this.next = null;
+        this._data = 0;
+        this._next = null;
     }
 
     constructor(data) {
-        this.data = data;
-        this.next = null;
+        this._data = data;
+        this._next = null;
     }
 
     constructor(data, next) {
-        this.data = data;
-        this.next = next;
+        this._data = data;
+        this._next = next;
     }
 }
 
 class Queue {
+    // Constructors
     constructor() {
-        this.front = null;
-        this.back = null;
-        this.size = 0;
+        this._front = null;
+        this._back = null;
+        this._size = 0;
     }
 
     constructor(data) {
-        this.front = new Node(data);
-        this.back = this.front;
-        this.size = 1;
+        this._front = Node(data);
+        this._back = this._front;
+        this._size = 1;
     }
 
     constructor(arr) {
-        this.front = new Node(arr[0]);
-        this.back = this.front;
-        this.size = 1;
+        this._front = Node(arr[0]);
+        this._back = this._front;
+        this._size = 1;
         for (const element of arr) {
-            this.back.next = new Node(element);
-            this.back = this.back.next;
-            this.size++;
+            this._back._next = Node(element);
+            this._back = this._back._next;
+            this._size++;
         }
     }
 
+    // Public Methods
     enqueue(data) {
         if (this.isEmpty()) {
-            this.front = new Node(data);
-            this.back = this.front;
-            this.size++;
+            this._front = Node(data);
+            this._back = this._front;
+            this._size++;
             return;
         }
 
-        this.back.next = new Node(data);
-        this.back = back.next;
-        this.size++;
+        this._back._next = Node(data);
+        this._back = this._back._next;
+        this._size++;
     }
 
     dequeue() {
         if (this.isEmpty()) {
-            print("Queue is empty");
+            console.log("Queue is empty");
             return;
         }
 
-        if (this.size == 1) {
-            this.front = null;
-            this.back = null;
-            this.size--;
+        if (this._size == 1) {
+            this._front = null;
+            this._back = null;
+            this._size--;
             return;
         }
 
-        this.front = this.front.next;
-        this.size--;
+        this._front = this._front._next;
+        this._size--;
     }
 
     peek() {
         if (this.isEmpty()) {
-            print("Queue is empty");
+            console.log("Queue is empty");
             return -1;
         }
 
-        return this.front.data;
+        return this._front._data;
     }
 
     isEmpty() {
-        return this.size == 0;
+        return this._size == 0;
     }
 
     getSize() {
-        return this.size;
+        return this._size;
     }
 }

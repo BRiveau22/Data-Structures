@@ -5,7 +5,7 @@ class HashTable {
         this._numCollisions = 0;
         this._numElements = 0;
         this._tableSize = 1;
-        this._table = new int[this.tableSize];
+        this._table = int[this.tableSize];
 
         if (mode == 3) {
             this._a = Math.random();
@@ -17,7 +17,7 @@ class HashTable {
         this._numCollisions = 0;
         this._numElements = 0;
         this._tableSize = tableSize;
-        this._table = new int[this.tableSize];
+        this._table = int[this.tableSize];
 
         if (mode == 3) {
             this._a = Math.random();
@@ -65,7 +65,7 @@ class HashTable {
 
     _digitFoldingHash(key) {
         let idx = 0;
-        let r = this.num_digits();
+        let r = this.numDigits();
 
         let keyStr = key.toString();
         while (keyStr.length > 0) {
@@ -87,7 +87,7 @@ class HashTable {
 
 
     _multHash(key, a) {
-        let idx = (int)(this._tableSize * ((key * a) % 1));
+        let idx = this._tableSize * ((key * a) % 1);
 
         if (this._table[idx] != 0) {
             this._numCollisions++;
@@ -99,7 +99,7 @@ class HashTable {
 
 
     _resize() {
-        const new_table = new HashTable(this._mode, this._tableSize * 2);
+        const new_table = HashTable(this._mode, this._tableSize * 2);
         for (let i = 0; i < this._tableSize; i++) {
             if (this._table[i] != 0) {
                 new_table.insert(this._table[i]);

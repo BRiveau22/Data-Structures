@@ -1,36 +1,36 @@
 class BSTNode {
     // Constructors
     constructor() {
-        this.value = 0;
-        this.left = null;
-        this.right = null;
+        this._value = 0;
+        this._left = null;
+        this._right = null;
     }
 
     constructor(value) {
-        this.value = value;
-        this.left = null;
-        this.right = null;
+        this._value = value;
+        this._left = null;
+        this._right = null;
     }
 }
 
 class BST {
     // Constructors
     constructor() {
-        this.root = null;
-        this.size = 0;
+        this._root = null;
+        this._size = 0;
     }
 
     // Helper Methods
     _insert(node, value) {
         if (node == null) {
-            return Node(value);
+            return BSTNode(value);
         }
 
-        if (data < node.data) {
-            node.left = this._insert(node.left, data);
+        if (data < node._data) {
+            node._left = this._insert(node._left, data);
         }
         else {
-            node.right = this._insert(node.right, data);
+            node._right = this._insert(node._right, data);
         }
 
         return node;
@@ -41,50 +41,42 @@ class BST {
             return node;
         }
 
-        if (value == node.data) {
+        if (value == node._data) {
             // 2 Children
-            if (node.left != null && node.right != null) {
-                let ios = this._findIOS(node.right);
-                node.data = ios.data;
-                node.right = this._remove(node.right, ios.data);
+            if (node._left != null && node._right != null) {
+                const ios = this._findIOS(node._right);
+                node._data = ios._data;
+                node._right = this._remove(node._right, ios._data);
             }
             // 1 Child (right)
-            else if (node.right != null) {
-                return node.right;
+            else if (node._right != null) {
+                return node._right;
             }
             // 1 Child (left)
-            else if (node.left != null) {
-                return node.left;
+            else if (node._left != null) {
+                return node._left;
             }
             // No Children
             else {
                 return null;
             }
         }
-        else if (value < node.data) {
-            node.left = this._remove(node.left, value);
+        else if (value < node._data) {
+            node._left = this._remove(node._left, value);
         }
         else {
-            node.right = this._remove(node.right, value);
+            node._right = this._remove(node._right, value);
         }
 
         return node;
     }
 
     _findIOS(node) {
-        if (node.left == null) {
+        if (node._left == null) {
             return node;
         }
 
-        return this._findIOS(node.left);
-    }
-
-    _findIOP(node) {
-        if (node.right == null) {
-            return node;
-        }
-
-        return this._findIOP(node.right);
+        return this._findIOS(node._left);
     }
 
     _height(root) {
@@ -92,10 +84,10 @@ class BST {
             return 0;
         }
 
-        let left_height = this._height(root.left);
-        let right_height = this._height(root.right);
+        const leftHeight = this._height(root._left);
+        const rightHeight = this._height(root._right);
 
-        return Math.max(left_height, right_height) + 1;
+        return Math.max(leftHeight, rightHeight) + 1;
     }
 
     _preorder(root, string) {
@@ -104,9 +96,9 @@ class BST {
             return "";
         }
 
-        outString += root.data + " ";
-        this._preorder(root.left, outString);
-        this._preorder(root.right, outString);
+        outString += root._data + " ";
+        this._preorder(root._left, outString);
+        this._preorder(root._right, outString);
 
         return outString;
     }
@@ -117,9 +109,9 @@ class BST {
             return "";
         }
 
-        this._inorder(root.left, outString);
-        outString += root.data + " ";
-        this._inorder(root.right, outString);
+        this._inorder(root._left, outString);
+        outString += root._data + " ";
+        this._inorder(root._right, outString);
 
         return outString;
     }
@@ -130,53 +122,53 @@ class BST {
             return "";
         }
 
-        this._postorder(root.left, outString);
-        this._postorder(root.right, outString);
-        outString += root.data + " ";
+        this._postorder(root._left, outString);
+        this._postorder(root._right, outString);
+        outString += root._data + " ";
 
         return outString;
     }
 
     // Methods
     insert(value) {
-        this.root = this._insert(this.root, value);
+        this.root = this._insert(this._root, value);
     }
 
     remove(value) {
-        this.root = this._remove(this.root, value);
+        this.root = this._remove(this._root, value);
     }
 
     height() {
-        if (this.root == null) {
+        if (this._root == null) {
             return -1;
         }
 
-        return this._height(this.root);
+        return this._height(this._root);
     }
 
     preorder() {
-        console.log(this._preorder(this.root, ""));
+        console.log(this._preorder(this._root, ""));
     }
 
     inorder() {
-        console.log(this._inorder(this.root, ""));
+        console.log(this._inorder(this._root, ""));
     }
 
     postorder() {
-        console.log(this._postorder(this.root, ""));
+        console.log(this._postorder(this._root, ""));
     }
 
     search(value) {
-        let current_node = this.root;
-        while (current_node != null) {
-            if (current_node.data == value) {
+        let currentNode = this._root;
+        while (currentNode != null) {
+            if (currentNode._data == value) {
                 return true;
             }
-            else if (value < current_node.data) {
-                current_node = current_node.left;
+            else if (value < currentNode._data) {
+                currentNode = currentNode._left;
             }
             else {
-                current_node = current_node.right;
+                currentNode = currentNode._right;
             }
         }
 

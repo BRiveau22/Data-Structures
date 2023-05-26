@@ -1,53 +1,56 @@
 class Node {
+    // Constructors
     constructor() {
-        this.data = 0;
-        this.next = null;
+        this._data = 0;
+        this._next = null;
     }
 
     constructor(data) {
-        this.data = data;
-        this.next = null;
+        this._data = data;
+        this._next = null;
     }
 
     constructor(data, next) {
-        this.data = data;
-        this.next = next;
+        this._data = data;
+        this._next = next;
     }
 }
 
 class LinkedList {
+    // Constructors
     constructor() {
-        this.head = null;
-        this.size = 0;
+        this._head = null;
+        this._size = 0;
     }
 
+    // Public Methods
     append(data) {
-        if (this.head == null) {
-            this.head = new Node(data);
-            this.size++;
+        if (this._head == null) {
+            this._head = Node(data);
+            this._size++;
             return;
         }
 
-        let current = this.head;
-        while (current.next != null) {
-            current = current.next;
+        let current = this._head;
+        while (current._next != null) {
+            current = current._next;
         }
 
-        current.next = new Node(data);
-        this.size++;
+        current._next = Node(data);
+        this._size++;
     }
 
     prepend(data) {
-        if (this.head == null) {
-            this.head = new Node(data);
-            this.size++;
+        if (this._head == null) {
+            this._head = Node(data);
+            this._size++;
             return;
         }
 
-        let new_head = new Node(data);
-        new_head.next = this.head;
-        this.head = new_head;
-        this.size++;
+        const newHead = Node(data);
+        newHead._next = this._head;
+        this._head = newHead;
+        this._size++;
     }
 
     insert(data, index) {
@@ -55,58 +58,59 @@ class LinkedList {
             this.prepend(data);
             return;
         }
-        else if (index >= this.size) {
+        else if (index >= this._size) {
             this.append(data);
             return;
         }
 
-        let current = this.head;
+        let current = this._head;
         for (let i = 0; i < index - 1; i++) {
-            current = current.next;
+            current = current._next;
         }
-        let new_node = new Node(data);
-        new_node.next = current.next;
-        current.next = new_node;
-        this.size++;
+
+        let newNode = Node(data);
+        newNode._next = current._next;
+        current._next = newNode;
+        this._size++;
     }
 
     remove(data) {
-        if (this.head == null) {
+        if (this._head == null) {
             return;
         }
 
-        if (this.head.data == data) {
-            this.head = this.head.next;
-            this.size--;
+        if (this._head._data == data) {
+            this._head = this._head._next;
+            this._size--;
             return;
         }
 
-        let current = this.head;
-        while (current.next != null) {
-            if (current.next.data == data) {
-                current.next = current.next.next;
-                this.size--;
+        let current = this._head;
+        while (current._next != null) {
+            if (current._next._data == data) {
+                current._next = current._next._next;
+                this._size--;
                 return;
             }
-            current = current.next;
+            current = current._next;
         }
     }
 
     contains(data) {
-        let current = this.head;
+        let current = this._head;
         while (current != null) {
-            if (current.data == data) {
+            if (current._data == data) {
                 return true;
             }
-            current = current.next;
+            current = current._next;
         }
     }
 
     print() {
-        let current = this.head;
+        let current = this._head;
         while (current != null) {
-            console.log(current.data);
-            current = current.next;
+            console.log(current._data);
+            current = current._next;
         }
     }
 }

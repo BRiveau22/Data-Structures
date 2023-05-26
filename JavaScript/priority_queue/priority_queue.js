@@ -1,106 +1,109 @@
 class PriorityNode {
+    // Constructors
     constructor() {
-        this.data = 0;
-        this.priority = 0;
-        this.next = null;
+        this._data = 0;
+        this._priority = 0;
+        this._next = null;
     }
 
     constructor(data) {
-        this.data = data;
-        this.priority = 0;
-        this.next = null;
+        this._data = data;
+        this._priority = 0;
+        this._next = null;
     }
 
     constructor(data, priority) {
-        this.data = data;
-        this.priority = priority;
-        this.next = null;
+        this._data = data;
+        this._priority = priority;
+        this._next = null;
     }
 
     constructor(data, next) {
-        this.data = data;
-        this.priority = 0;
-        this.next = next;
+        this._data = data;
+        this._priority = 0;
+        this._next = next;
     }
 
     constructor(data, priority, next) {
-        this.data = data;
-        this.priority = priority;
-        this.next = next;
+        this._data = data;
+        this._priority = priority;
+        this._next = next;
     }
 }
 
 class PriorityQueue {
+    // Constructors
     constructor() {
-        this.front = null;
-        this.back = null;
-        this.size = 0;
+        this._front = null;
+        this._back = null;
+        this._size = 0;
     }
 
     constructor(data) {
-        this.front = new Node(data);
-        this.back = this.front;
-        this.size = 1;
+        this._front = Node(data);
+        this._back = this._front;
+        this._size = 1;
     }
 
     constructor(arr) {
-        this.front = new Node(arr[0]);
-        this.back = this.front;
-        this.size = 1;
+        this._front = Node(arr[0]);
+        this._back = this._front;
+        this._size = 1;
         for (const element of arr) {
-            this.back.next = new Node(element);
-            this.back = this.back.next;
-            this.size++;
+            this._back._next = Node(element);
+            this._back = this._back._next;
+            this._size++;
         }
     }
 
+    // Public Methods
     enqueue(data, priority) {
         if (this.isEmpty()) {
-            this.front = new Node(data, priority);
-            this.back = this.front;
-            this.size++;
+            this._front = Node(data, priority);
+            this._back = this._front;
+            this._size++;
             return;
         }
 
-        if (priority < this.front.priority) {
-            this.front = new Node(data, priority, this.front);
-            this.size++;
+        if (priority < this._front._priority) {
+            this._front = new Node(data, priority, this._front);
+            this._size++;
             return;
         }
 
-        let current = this.front;
-        while (current.next != null && current.next.priority <= priority) {
-            current = current.next;
+        let current = this._front;
+        while (current._next != null && current._next._priority <= priority) {
+            current = current._next;
         }
 
-        current.next = new Node(data, priority, current.next);
-        this.size++;
+        current._next = Node(data, priority, current._next);
+        this._size++;
     }
 
     dequeue() {
         if (this.isEmpty()) {
-            print("Queue is empty");
+            console.log("Queue is empty");
             return;
         }
 
-        this.front = this.front.next;
-        this.size--;
+        this._front = this._front._next;
+        this._size--;
     }
 
     peek() {
         if (this.isEmpty()) {
-            print("Queue is empty");
+            console.log("Queue is empty");
             return -1;
         }
 
-        return this.front.data;
+        return this._front._data;
     }
 
     isEmpty() {
-        return this.size == 0;
+        return this._size == 0;
     }
 
     getSize() {
-        return this.size;
+        return this._size;
     }
 }
