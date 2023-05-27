@@ -1,11 +1,13 @@
 public class Dynamic_Array
 {
+    #region Properties
     private int m_length;
     private int m_capacity;
     private double m_scale_factor;
     private int[] m_array;
+    #endregion
 
-    // Constructors
+    #region Constructors
     Dynamic_Array()
     {
         this.m_length = 0;
@@ -33,30 +35,21 @@ public class Dynamic_Array
             this.m_array[i] = default_value;
         }
     }
+    #endregion
 
-    // Getters / Setters
-    int get_length()
+    #region Public Methods
+    public void resize()
     {
-        return this.m_length;
+        int[] new_data = new int[this->m_capacity * this->m_scale_factor];
+        for (int i = 0; i < this->m_length; i++)
+        {
+            new_data[i] = this->m_array[i];
+        }
+        this->m_array = new_data;
+        this->m_capacity *= this->m_scale_factor;
     }
 
-    int get_capacity()
-    {
-        return this.m_capacity;
-    }
-
-    double get_scale_factor()
-    {
-        return this.m_scale_factor;
-    }
-
-    void set_scale_factor(double scale_factor)
-    {
-        this.m_scale_factor = scale_factor;
-    }
-
-    // Methods
-    void append(int data)
+    public void append(int data)
     {
         // Check for array overflow
         if (this.m_length == this.m_capacity)
@@ -79,7 +72,7 @@ public class Dynamic_Array
         this.m_length++;
     }
 
-    void prepend(int data)
+    public void prepend(int data)
     {
         // Check for array overflow
         if (this.m_length == this.m_capacity)
@@ -102,7 +95,7 @@ public class Dynamic_Array
         this.m_length++;
     }
 
-    void remove_last()
+    public void remove_last()
     {
         int[] new_array = new int[this.m_capacity];
         this.m_array = new_array;
@@ -112,7 +105,7 @@ public class Dynamic_Array
         }
     }
 
-    void remove_first()
+    public void remove_first()
     {
         int[] new_array = new int[this.m_capacity];
         this.m_array = new_array;
@@ -122,7 +115,7 @@ public class Dynamic_Array
         }
     }
 
-    void clear()
+    public void clear()
     {
         while (this->m_length > 0)
         {
@@ -130,7 +123,7 @@ public class Dynamic_Array
         }
     }
 
-    int find_first_of(int data)
+    public int find_first_of(int data)
     {
         for (int i = 0; i < this.m_length; i++)
         {
@@ -142,7 +135,7 @@ public class Dynamic_Array
         return -1;
     }
 
-    int find_last_of(int data)
+    public int find_last_of(int data)
     {
         for (int i = this.m_length - 1; i >= 0; i--)
         {
@@ -154,7 +147,7 @@ public class Dynamic_Array
         return -1;
     }
 
-    bool contains(int data)
+    public bool contains(int data)
     {
         for (int i = 0; i < this.m_length; i++)
         {
@@ -165,4 +158,5 @@ public class Dynamic_Array
         }
         return false;
     }
+    #endregion
 }

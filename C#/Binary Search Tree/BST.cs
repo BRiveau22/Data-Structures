@@ -1,38 +1,45 @@
 public class BSTNode
 {
-    private int data;
-    private BSTNode left;
-    private BSTNode right;
+    #region Properties
+    private int _data;
+    private BSTNode _left;
+    private BSTNode _right;
+    #endregion
 
-    // Constructors
+    #region Constructors
     public BSTNode()
     {
-        this.data = 0;
-        this.left = null;
-        this.right = null;
+        this._data = 0;
+        this._left = null;
+        this._right = null;
     }
 
     public BSTNode(int data)
     {
-        this.data = data;
-        this.left = null;
-        this.right = null;
+        this._data = data;
+        this._left = null;
+        this._right = null;
     }
+    #endregion
 }
 
 public class BSTree
 {
-    private BSTNode root;
-    private int size;
+    #region Properties
+    private BSTNode _root;
+    private int _size;
+    #endregion
 
-    // Constructors
+    #region Constructors
     public BSTree()
     {
-        this.root = null;
-        this.size = 0;
+        this._root = null;
+        this._size = 0;
     }
 
-    // Private Methods
+    #endregion
+
+    #region Private Methods
     private BSTNode insert(BSTNode current_node, int data)
     {
         if (current_node == null)
@@ -40,13 +47,13 @@ public class BSTree
             return new BSTNode(data);
         }
 
-        if (data < current_node.data)
+        if (data < current_node._data)
         {
-            current_node.left = this.insert(current_node.left, data);
+            current_node._left = this.insert(current_node._left, data);
         }
         else
         {
-            current_node.right = this.insert(current_node.right, data);
+            current_node._right = this.insert(current_node._right, data);
         }
 
         return current_node;
@@ -58,24 +65,24 @@ public class BSTree
             return current_node;
         }
 
-        if (current_node.data == data)
+        if (current_node._data == data)
         {
             // 2 children
-            if (current_node.left != null && current_node.right != null)
+            if (current_node._left != null && current_node._right != null)
             {
-                BSTNode ios = this.find_ios(current_node.right);
-                current_node.data = ios.data;
-                current_node.right = this.remove(current_node.right, ios.data);
+                BSTNode ios = this.find_ios(current_node._right);
+                current_node._data = ios._data;
+                current_node._right = this.remove(current_node._right, ios._data);
             }
             // 1 child (right)
-            else if (current_node.right != null)
+            else if (current_node._right != null)
             {
-                current_node = current_node.right;
+                current_node = current_node._right;
             }
             // 1 child (left)
-            else if (current_node.left != null)
+            else if (current_node._left != null)
             {
-                current_node = current_node.left;
+                current_node = current_node._left;
             }
             // No children
             else
@@ -83,13 +90,13 @@ public class BSTree
                 current_node = null;
             }
         }
-        else if (data < current_node.data)
+        else if (data < current_node._data)
         {
-            current_node.left = this.remove(current_node.left, data);
+            current_node._left = this.remove(current_node._left, data);
         }
         else
         {
-            current_node.right = this.remove(current_node.right, data);
+            current_node._right = this.remove(current_node._right, data);
         }
 
         return current_node;
@@ -101,8 +108,8 @@ public class BSTree
             return 0;
         }
 
-        int left_height = this.height(root.left);
-        int right_height = this.height(root.right);
+        int left_height = this.height(root._left);
+        int right_height = this.height(root._right);
 
         return Math.Max(left_height, right_height) + 1;
     }
@@ -114,9 +121,9 @@ public class BSTree
             return "";
         }
 
-        out_str += root.data + " ";
-        out_str = this.preorder(root.left, out_str);
-        out_str = this.preorder(root.right, out_str);
+        out_str += root._data + " ";
+        out_str = this.preorder(root._left, out_str);
+        out_str = this.preorder(root._right, out_str);
 
         return out_str;
     }
@@ -128,9 +135,9 @@ public class BSTree
             return "";
         }
 
-        out_str = this.inorder(root.left, out_str);
-        out_str += root.data + " ";
-        out_str = this.inorder(root.right, out_str);
+        out_str = this.inorder(root._left, out_str);
+        out_str += root._data + " ";
+        out_str = this.inorder(root._right, out_str);
 
         return out_str;
     }
@@ -142,84 +149,86 @@ public class BSTree
             return "";
         }
 
-        out_str = this.postorder(root.left, out_str);
-        out_str = this.postorder(root.right, out_str);
-        out_str += root.data + " ";
+        out_str = this.postorder(root._left, out_str);
+        out_str = this.postorder(root._right, out_str);
+        out_str += root._data + " ";
 
         return out_str;
     }
     private BSTNode find_ios(BSTNode current_node)
     {
-        if (current_node.left == null)
+        if (current_node._left == null)
         {
             return current_node;
         }
 
-        return this.find_ios(current_node.left);
+        return this.find_ios(current_node._left);
     }
     private BSTNode find_iop(BSTNode current_node)
     {
-        if (current_node.right == null)
+        if (current_node._right == null)
         {
             return current_node;
         }
 
-        return this.find_iop(current_node.right);
+        return this.find_iop(current_node._right);
     }
+    #endregion
 
-    // Public Methods
+    #region Public Methods
     public void insert(int data)
     {
         if (!this.search(data))
         {
-            this.root = this.insert(this.root, data);
-            this.size++;
+            this._root = this.insert(this._root, data);
+            this._size++;
         }
     }
     public int height()
     {
-        return this.height(this.root);
+        return this.height(this._root);
     }
     public void remove(int data)
     {
         if (this.search(data))
         {
-            this.root = this.remove(this.root, data);
-            this.size--;
+            this._root = this.remove(this._root, data);
+            this._size--;
         }
     }
     public void preorder()
     {
-        print(this.preorder(this.root, ""));
+        print(this.preorder(this._root, ""));
     }
     public void inorder()
     {
-        print(this.inorder(this.root, ""));
+        print(this.inorder(this._root, ""));
     }
     public void postorder()
     {
-        print(this.postorder(this.root, ""));
+        print(this.postorder(this._root, ""));
     }
     public bool search(int data)
     {
-        BSTNode current_node = this.root;
+        BSTNode current_node = this._root;
 
         while (current_node != null)
         {
-            if (data == current_node.data)
+            if (data == current_node._data)
             {
                 return true;
             }
-            else if (data < current_node.data)
+            else if (data < current_node._data)
             {
-                current_node = current_node.left;
+                current_node = current_node._left;
             }
             else
             {
-                current_node = current_node.right;
+                current_node = current_node._right;
             }
         }
 
         return false;
     }
+    #endregion
 }
