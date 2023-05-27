@@ -17,7 +17,7 @@ void destroy_linked_list(LinkedList *list)
     while (current != NULL)
     {
         next = current->_next;
-        free(current);
+        destroy_node(current);
         current = next;
     }
     free(list);
@@ -26,7 +26,7 @@ void destroy_linked_list(LinkedList *list)
 // Methods
 void append(LinkedList *list, int data)
 {
-    Node *new_node = create(data);
+    Node *new_node = create_node_data(data);
     if (list->head == NULL)
     {
         list->head = new_node;
@@ -84,7 +84,7 @@ void remove(LinkedList *list, int data)
     }
     Node *temp = current->_next;
     current->_next = current->_next->_next;
-    free(temp);
+    destroy_node(temp);
 }
 
 bool contains(LinkedList *list, int data)

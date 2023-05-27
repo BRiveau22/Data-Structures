@@ -1,42 +1,44 @@
 #include "Priority_Node.h"
 
+// Constructors
 Priority_Node *create_node()
 {
     Priority_Node *node = (Priority_Node *)malloc(sizeof(Priority_Node));
-    node->priority = 0;
-    node->data = 0;
-    node->next = NULL;
+    node->_priority = 0;
+    node->_data = 0;
+    node->_next = NULL;
     return node;
 }
 
-Priority_Node *create_node(int data)
+Priority_Node *create_node_data(int data)
 {
     Priority_Node *node = (Priority_Node *)malloc(sizeof(Priority_Node));
-    node->priority = 0;
-    node->data = data;
-    node->next = NULL;
+    node->_priority = 0;
+    node->_data = data;
+    node->_next = NULL;
     return node;
 }
 
-Priority_Node *create_node(int data, Priority_Node *next)
+Priority_Node *create_node_next(int data, Priority_Node *next)
 {
     Priority_Node *node = (Priority_Node *)malloc(sizeof(Priority_Node));
-    node->priority = 0;
-    node->data = data;
-    node->next = next;
+    node->_priority = 0;
+    node->_data = data;
+    node->_next = next;
     return node;
 }
 
-Priority_Node *create_node(int data, int priority)
+Priority_Node *create_node_priority(int data, int priority)
 {
     Priority_Node *node = (Priority_Node *)malloc(sizeof(Priority_Node));
-    node->priority = priority;
-    node->data = data;
-    node->next = NULL;
+    node->_priority = priority;
+    node->_data = data;
+    node->_next = NULL;
     return node;
 }
 
-void destroy(Priority_Node *node)
+// Destructor
+void destroy_node(Priority_Node *node)
 {
     free(node);
 }

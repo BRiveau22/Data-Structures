@@ -1,14 +1,17 @@
 #ifndef NODE_H
 #define NODE_H
-#include <stdlib.h>
+#include <stddef.h>
 
 typedef struct Node
 {
-    int data;
-    struct Node *next;
+    int _data;
+    struct Node *_next;
 } Node;
 
-Node *create_node(int data);
-void destroy(Node *node);
+// Constructor
+Node *create_node_data(int data);
+
+// Destructor
+void destroy_node(Node *node);
 
 #endif

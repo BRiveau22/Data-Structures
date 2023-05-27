@@ -1,14 +1,14 @@
 #include "Node.h"
 
-Node *create()
+Node *create_node_data()
 {
     Node *node = (Node *)malloc(sizeof(Node));
-    node->data = 0;
-    node->next = NULL;
+    node->_data = 0;
+    node->_next = NULL;
     return node;
 }
 
-void destroy(Node *node)
+void destroy_node(Node *node)
 {
     free(node);
 }
