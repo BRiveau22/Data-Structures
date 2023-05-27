@@ -1,80 +1,80 @@
 class Node:
     # Constructors
     def __init__(self):
-        self.data = 0
-        self.next = None
+        self._data = 0
+        self._next = None
 
     def __init__(self, data):
-        self.data = data
-        self.next = None
+        self._data = data
+        self._next = None
 
     def __init__(self, data, next):
-        self.data = data
-        self.next = next
+        self._data = data
+        self._next = next
 
 
 class LinkedList:
     # Contstructors
     def __init__(self):
-        self.head = None
-        self.size = 0
+        self._head = None
+        self._size = 0
 
     def __init__(self, head):
-        self.head = head
-        self.size = 0
+        self._head = head
+        self._size = 0
 
     def __init__(self, list):
-        self.head = Node(list[0])
-        self.size = 1
+        self._head = Node(list[0])
+        self._size = 1
 
-        current = self.head
+        current = self._head
         for i in range(1, len(list)):
-            current.next = Node(list[i])
+            current._next = Node(list[i])
             current = current.getNext()
-            self.size += 1
+            self._size += 1
 
     # Methods
     def push_front(self, data):
-        self.head = Node(data, self.head)
+        self._head = Node(data, self._head)
 
     def push_back(self, data):
-        current = self.head
+        current = self._head
 
-        while current.next() != None:
-            current = current.next
+        while current._next() != None:
+            current = current._next
 
-        current.next = Node(data)
+        current._next = Node(data)
 
     def insert(self, data, idx):
         if idx <= 0:
             self.push_front(data)
-        elif idx >= self.size:
+        elif idx >= self._size:
             self.push_back(data)
         else:
-            current = self.head
+            current = self._head
             for i in range(idx):
-                current = current.next
+                current = current._next
 
-            current.next = Node(data, current.next)
+            current._next = Node(data, current._next)
 
     def remove(self, data):
-        current = self.head
-        while current.next != None:
-            if current.next.data == data:
-                current.next = current.next.next
+        current = self._head
+        while current._next != None:
+            if current._next.data == data:
+                current._next = current._next.next
                 return
-            current = current.next
+            current = current._next
 
     def contains(self, data):
-        current = self.head
-        while current.next != None:
-            if current.data == data:
+        current = self._head
+        while current._next != None:
+            if current._data == data:
                 return True
-            current = current.next
+            current = current._next
         return False
 
     def print(self):
-        current = self.head
+        current = self._head
         while current != None:
-            print(current.data + " ")
-            current = current.next
+            print(current._data + " ")
+            current = current._next
