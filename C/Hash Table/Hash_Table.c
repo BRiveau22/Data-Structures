@@ -1,7 +1,7 @@
 #include "Hash_Table.h"
 
 // Constructors
-Hash_Table *create(int mode)
+Hash_Table *create_hash(int mode)
 {
     Hash_Table *hash_table = (Hash_Table *)malloc(sizeof(Hash_Table));
     hash_table->_table = 0;
@@ -14,7 +14,7 @@ Hash_Table *create(int mode)
     return hash_table;
 }
 
-Hash_Table *create_with_size(int mode, int size)
+Hash_Table *create_hash_with_size(int mode, int size)
 {
     Hash_Table *hash_table = (Hash_Table *)malloc(sizeof(Hash_Table));
     hash_table->_table = (int *)malloc(sizeof(int) * size);
@@ -28,7 +28,7 @@ Hash_Table *create_with_size(int mode, int size)
 }
 
 // Destructor
-void destroy(Hash_Table hash_table)
+void destroy_hash(Hash_Table hash_table)
 {
     free(hash_table._table);
     free(&hash_table);

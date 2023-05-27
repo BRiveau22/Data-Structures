@@ -1,46 +1,49 @@
 #include "BST.h"
 
-BST *create()
+// Constructor
+BST *create_tree()
 {
     BST *tree = (BST *)malloc(sizeof(BST));
-    tree->root = NULL;
-    tree->size = 0;
+    tree->_root = NULL;
+    tree->_size = 0;
     return tree;
 }
 
-void destroy(BST *tree)
+// Destructor
+void destroy_tree(BST *tree)
 {
-    destroy(tree->root);
+    destroy_node(tree->_root);
     free(tree);
 }
 
+// Methods
 BST_Node *insert(BST *tree, BST_Node *root, int data)
 {
-    if (data == root->data)
+    if (data == root->_data)
     {
         return root;
     }
 
     if (root == NULL)
     {
-        tree->size++;
+        tree->_size++;
         return create_node(data);
     }
-    else if (data > root->data)
+    else if (data > root->_data)
     {
-        root->right = insert(tree, root->right, data);
+        root->_right = insert(tree, root->_right, data);
     }
-    else if (data < root->data)
+    else if (data < root->_data)
     {
-        root->left = insert(tree, root->left, data);
+        root->_left = insert(tree, root->_left, data);
     }
 }
 
 BST_Node *find_ios(BST *tree, BST_Node *root)
 {
-    while (root->left != NULL)
+    while (root->_left != NULL)
     {
-        root = root->left;
+        root = root->_left;
     }
 
     return root;
@@ -53,41 +56,41 @@ BST_Node *remove(BST *tree, BST_Node *root, int data)
         return root;
     }
 
-    if (root->data == data)
+    if (root->_data == data)
     {
         // Case 1: No children
-        if (root->left == NULL && root->right == NULL)
+        if (root->_left == NULL && root->_right == NULL)
         {
-            destroy(root);
+            destroy_node(root);
             return NULL;
         }
 
         // Case 2: One child
-        if (root->left == NULL)
+        if (root->_left == NULL)
         {
-            BST_Node *temp = root->right;
-            root->right = remove(tree, root->right, temp->data);
+            BST_Node *temp = root->_right;
+            root->_right = remove(tree, root->_right, temp->_data);
             return temp;
         }
-        if (root->right == NULL)
+        if (root->_right == NULL)
         {
-            BST_Node *temp = root->left;
-            root->left = remove(tree, root->left, temp->data);
+            BST_Node *temp = root->_left;
+            root->_left = remove(tree, root->_left, temp->_data);
             return temp;
         }
 
         // Case 3: Two children
-        BST_Node *ios = find_ios(tree, root->right);
-        root->data = ios->data;
-        root->right = remove(tree, root->right, ios->data);
+        BST_Node *ios = find_ios(tree, root->_right);
+        root->_data = ios->_data;
+        root->_right = remove(tree, root->_right, ios->_data);
     }
-    else if (data > root->data)
+    else if (data > root->_data)
     {
-        root->right = remove(tree, root->right, data);
+        root->_right = remove(tree, root->_right, data);
     }
-    else if (data < root->data)
+    else if (data < root->_data)
     {
-        root->left = remove(tree, root->left, data);
+        root->_left = remove(tree, root->_left, data);
     }
 
     return root;
@@ -100,17 +103,17 @@ bool search(BST *tree, BST_Node *root, int data)
         return false;
     }
 
-    if (root->data == data)
+    if (root->_data == data)
     {
         return true;
     }
-    else if (data > root->data)
+    else if (data > root->_data)
     {
-        return search(tree, root->right, data);
+        return search(tree, root->_right, data);
     }
-    else if (data < root->data)
+    else if (data < root->_data)
     {
-        return search(tree, root->left, data);
+        return search(tree, root->_left, data);
     }
 }
 
@@ -121,9 +124,9 @@ void preorder(BST *tree, BST_Node *root)
         return;
     }
 
-    printf("%d ", root->data);
-    preorder(tree, root->left);
-    preorder(tree, root->right);
+    printf(root->_data + " ");
+    preorder(tree, root->_left);
+    preorder(tree, root->_right);
 }
 
 void inorder(BST *tree, BST_Node *root)
@@ -133,9 +136,9 @@ void inorder(BST *tree, BST_Node *root)
         return;
     }
 
-    inorder(tree, root->left);
-    printf("%d ", root->data);
-    inorder(tree, root->right);
+    inorder(tree, root->_left);
+    printf(root->_data + " ");
+    inorder(tree, root->_right);
 }
 
 void postorder(BST *tree, BST_Node *root)
@@ -145,9 +148,9 @@ void postorder(BST *tree, BST_Node *root)
         return;
     }
 
-    postorder(tree, root->left);
-    postorder(tree, root->right);
-    printf("%d ", root->data);
+    postorder(tree, root->_left);
+    postorder(tree, root->_right);
+    printf(root->_data + " ");
 }
 
 int height(BST *tree, BST_Node *root)
@@ -157,8 +160,8 @@ int height(BST *tree, BST_Node *root)
         return 0;
     }
 
-    int left_height = height(tree, root->left);
-    int right_height = height(tree, root->right);
+    int left_height = height(tree, root->_left);
+    int right_height = height(tree, root->_right);
 
     return (left_height > right_height) ? left_height + 1 : right_height + 1;
 }

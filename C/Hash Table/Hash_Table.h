@@ -13,11 +13,11 @@ typedef struct Hash_Table
 } Hash_Table;
 
 // Constructors
-Hash_Table *create(int mode);
-Hash_Table *create_with_size(int mode, int size);
+Hash_Table *create_hash(int mode);
+Hash_Table *create_hash_with_size(int mode, int size);
 
 // Destructor
-void destroy(Hash_Table *table);
+void destroy_hash(Hash_Table *table);
 
 // Private Methods
 int _num_digits(Hash_Table *table);

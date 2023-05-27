@@ -1,20 +1,22 @@
 #include "BST_Node.h"
 
+// Constructor
 BST_Node *create_node()
 {
     BST_Node *node = (BST_Node *)malloc(sizeof(BST_Node));
-    node->data = 0;
-    node->left = NULL;
-    node->right = NULL;
+    node->_data = 0;
+    node->_left = NULL;
+    node->_right = NULL;
     return node;
 }
 
-void destroy(BST_Node *root)
+// Destructor
+void destroy_node(BST_Node *root)
 {
     if (root != NULL)
     {
-        destroy(root->left);
-        destroy(root->right);
+        destroy_node(root->_left);
+        destroy_node(root->_right);
         free(root);
     }
 }

@@ -1,34 +1,35 @@
 #include "Node.h"
-#include <stdlib.h>
 
-Node *create()
+// Constructors
+Node *create_node()
 {
     Node *node = (Node *)malloc(sizeof(Node));
-    node->data = 0;
-    node->next = NULL;
+    node->_data = 0;
+    node->_next = NULL;
 
     return node;
 }
 
-Node *create(int data)
+Node *create_node_data(int data)
 {
     Node *node = (Node *)malloc(sizeof(Node));
-    node->data = data;
-    node->next = NULL;
+    node->_data = data;
+    node->_next = NULL;
 
     return node;
 }
 
-Node *create(int data, Node *next)
+Node *create_node_full(int data, Node *next)
 {
     Node *node = (Node *)malloc(sizeof(Node));
-    node->data = data;
-    node->next = next;
+    node->_data = data;
+    node->_next = next;
 
     return node;
 }
 
-void destroy(Node *node)
+// Destructor
+void destroy_node(Node *node)
 {
     free(node);
 }

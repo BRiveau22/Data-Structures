@@ -4,19 +4,19 @@
 
 typedef struct DynamicArray
 {
-    int *data;
-    int length;
-    int capacity;
-    double scale_factor;
+    int *_data;
+    int _length;
+    int _capacity;
+    double _scale_factor;
 } DynamicArray;
 
 // Constructors
-DynamicArray *create();
-DynamicArray *create_capacity(double scale_factor, int capacity);
-DynamicArray *create_default_value(double scale_factor, int length, int default_value);
+DynamicArray *create_array();
+DynamicArray *create_array_capacity(double scale_factor, int capacity);
+DynamicArray *create_array_default_value(double scale_factor, int length, int default_value);
 
 // Destructor
-void destroy(DynamicArray *array);
+void destroy_array(DynamicArray *array);
 
 // Methods
 void resize(DynamicArray *array);

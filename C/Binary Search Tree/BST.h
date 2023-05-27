@@ -6,12 +6,17 @@
 
 typedef struct BST
 {
-    struct BST_Node *root;
-    int size;
+    struct BST_Node *_root;
+    int _size;
 } BST;
 
-BST *create();
-void destroy(BST_Node *root);
+// Constructor
+BST *create_tree();
+
+// Destructor
+void destroy_tree(BST_Node *root);
+
+// Methods
 BST_Node *insert(BST *tree, BST_Node *root, int data);
 int height(BST *tree, BST_Node *root);
 BST_Node *find_ios(BST *tree, BST_Node *root); // In Order Successor (IOS)

@@ -1,6 +1,7 @@
 #include "Linked_List.h"
 
-LinkedList *create()
+// Constructors
+LinkedList *create_linked_list()
 {
     LinkedList *list = (LinkedList *)malloc(sizeof(LinkedList));
     list->head = NULL;
@@ -8,19 +9,21 @@ LinkedList *create()
     return list;
 }
 
-void destroy(LinkedList *list)
+// Destructor
+void destroy_linked_list(LinkedList *list)
 {
     Node *current = list->head;
     Node *next;
     while (current != NULL)
     {
-        next = current->next;
+        next = current->_next;
         free(current);
         current = next;
     }
     free(list);
 }
 
+// Methods
 void append(LinkedList *list, int data)
 {
     Node *new_node = create(data);
@@ -31,11 +34,11 @@ void append(LinkedList *list, int data)
     else
     {
         Node *current = list->head;
-        while (current->next != NULL)
+        while (current->_next != NULL)
         {
-            current = current->next;
+            current = current->_next;
         }
-        current->next = new_node;
+        current->_next = new_node;
     }
     list->size++;
 }
@@ -43,7 +46,7 @@ void append(LinkedList *list, int data)
 void prepend(LinkedList *list, int data)
 {
     Node *new_node = create(data);
-    new_node->next = list->head;
+    new_node->_next = list->head;
     list->head = new_node;
     list->size++;
 }
@@ -64,10 +67,10 @@ void insert(LinkedList *list, int data, int idx)
         Node *current = list->head;
         for (int i = 0; i < idx - 1; i++)
         {
-            current = current->next;
+            current = current->_next;
         }
-        new_node->next = current->next;
-        current->next = new_node;
+        new_node->_next = current->_next;
+        current->_next = new_node;
         list->size++;
     }
 }
@@ -75,12 +78,12 @@ void insert(LinkedList *list, int data, int idx)
 void remove(LinkedList *list, int data)
 {
     Node *current = list->head;
-    while (current->next->data != data)
+    while (current->_next->_data != data)
     {
-        current = current->next;
+        current = current->_next;
     }
-    Node *temp = current->next;
-    current->next = current->next->next;
+    Node *temp = current->_next;
+    current->_next = current->_next->_next;
     free(temp);
 }
 
@@ -89,11 +92,11 @@ bool contains(LinkedList *list, int data)
     Node *current = list->head;
     while (current != NULL)
     {
-        if (current->data == data)
+        if (current->_data == data)
         {
             return true;
         }
-        current = current->next;
+        current = current->_next;
     }
     return false;
 }
@@ -103,7 +106,7 @@ void print(LinkedList *list)
     Node *current = list->head;
     while (current != NULL)
     {
-        printf("%d ", current->data);
-        current = current->next;
+        printf(current->_data + " ");
+        current = current->_next;
     }
 }

@@ -8,8 +8,8 @@ typedef struct LinkedList
     int size;
 } LinkedList;
 
-LinkedList *create();
-void destroy(LinkedList *list);
+LinkedList *create_linked_list();
+void destroy_linked_list(LinkedList *list);
 void append(LinkedList *list, int data);
 void prepend(LinkedList *list, int data);
 void insert(LinkedList *list, int data, int index);
