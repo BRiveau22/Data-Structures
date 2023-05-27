@@ -20,7 +20,7 @@ public class Node {
         this.next = next;
     }
 
-    // Getters
+    // Public Methods
     public int getData() {
         return this.data;
     }
@@ -29,7 +29,6 @@ public class Node {
         return this.next;
     }
 
-    // Setters
     public void setData(int data) {
         this.data = data;
     }
