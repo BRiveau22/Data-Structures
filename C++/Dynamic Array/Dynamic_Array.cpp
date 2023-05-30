@@ -1,28 +1,28 @@
 #include "Dynamic_Array.h"
 
-// Constructors
+#pragma region Constructors
 DynamicArray::DynamicArray()
-    : m_length(0), m_capacity(0), m_scaling_factor(2.0), m_data(nullptr)
+    : _length(0), _capacity(0), _scaling_factor(2.0), _data(nullptr)
 {
 }
 
 DynamicArray::DynamicArray(double scaling_factor, unsigned int capacity)
 {
-    this->m_data = new int[capacity];
-    this->m_length = 0;
-    this->m_capacity = capacity;
-    this->m_scaling_factor = scaling_factor;
+    this->_data = new int[capacity];
+    this->_length = 0;
+    this->_capacity = capacity;
+    this->_scaling_factor = scaling_factor;
 }
 
 DynamicArray::DynamicArray(double scaling_factor, unsigned int length, int default_value)
 {
-    this->m_data = new int[length];
-    this->m_length = length;
-    this->m_capacity = length;
-    this->m_scaling_factor = scaling_factor;
-    for (int i = 0; i < m_length; i++)
+    this->_data = new int[length];
+    this->_length = length;
+    this->_capacity = length;
+    this->_scaling_factor = scaling_factor;
+    for (int i = 0; i < _length; i++)
     {
-        m_data[i] = default_value;
+        _data[i] = default_value;
     }
 }
 
@@ -32,47 +32,49 @@ DynamicArray::DynamicArray(const DynamicArray &other)
     // use the assignment operator
     (*this) = other;
 }
+#pragma endregion
 
-// Destructor
+#pragma region Destructor
 DynamicArray::~DynamicArray()
 {
-    delete[] m_data;
+    delete[] _data;
 }
+#pragma endregion
 
-// Methods
+#pragma region Public Methods
 unsigned int DynamicArray::get_length()
 {
-    return m_length;
+    return _length;
 }
 
 unsigned int DynamicArray::get_capacity()
 {
-    return m_capacity;
+    return _capacity;
 }
 
 double DynamicArray::get_scaling_factor()
 {
-    return m_scaling_factor;
+    return _scaling_factor;
 }
 
 void DynamicArray::set_scaling_factor(double value)
 {
-    m_scaling_factor = value;
+    _scaling_factor = value;
 }
 
 std::string DynamicArray::to_string()
 {
     std::string str("");
 
-    for (int i = 0; i < m_length; i++)
+    for (int i = 0; i < _length; i++)
     {
-        if (i == m_length - 1)
+        if (i == _length - 1)
         {
-            str += std::to_string(m_data[i]);
+            str += std::to_string(_data[i]);
         }
         else
         {
-            str += std::to_string(m_data[i]) + " ";
+            str += std::to_string(_data[i]) + " ";
         }
     }
 
@@ -81,55 +83,55 @@ std::string DynamicArray::to_string()
 
 void DynamicArray::append(int value)
 {
-    if (m_length == m_capacity)
+    if (_length == _capacity)
     {
-        m_capacity *= m_scaling_factor;
+        _capacity *= _scaling_factor;
 
-        auto new_m_data = new int[m_capacity];
-        for (int i = 0; i < m_length; i++)
+        auto new_m_data = new int[_capacity];
+        for (int i = 0; i < _length; i++)
         {
-            new_m_data[i] = m_data[i];
+            new_m_data[i] = _data[i];
         }
         this->~DynamicArray();
-        m_data = new_m_data;
+        _data = new_m_data;
     }
 
-    m_data[m_length] = value;
-    m_length++;
+    _data[_length] = value;
+    _length++;
 }
 
 void DynamicArray::prepend(int value)
 {
-    if (m_length == m_capacity)
+    if (_length == _capacity)
     {
-        m_capacity *= m_scaling_factor;
+        _capacity *= _scaling_factor;
 
-        auto new_m_data = new int[m_capacity];
-        for (int i = 0; i < m_length; i++)
+        auto new_m_data = new int[_capacity];
+        for (int i = 0; i < _length; i++)
         {
-            new_m_data[i + 1] = m_data[i];
+            new_m_data[i + 1] = _data[i];
         }
         this->~DynamicArray();
-        m_data = new_m_data;
+        _data = new_m_data;
     }
     else
     {
-        for (int i = m_length; i > 0; i--)
+        for (int i = _length; i > 0; i--)
         {
-            m_data[i] = m_data[i - 1];
+            _data[i] = _data[i - 1];
         }
     }
 
-    m_data[0] = value;
-    m_length++;
+    _data[0] = value;
+    _length++;
 }
 
 bool DynamicArray::find_first_of(int value, unsigned int *index)
 {
     bool found = false;
-    for (int i = 0; i < m_length; i++)
+    for (int i = 0; i < _length; i++)
     {
-        if (m_data[i] == value)
+        if (_data[i] == value)
         {
             found = true;
             *index = i;
@@ -142,9 +144,9 @@ bool DynamicArray::find_first_of(int value, unsigned int *index)
 bool DynamicArray::find_last_of(int value, unsigned int *index)
 {
     bool found = false;
-    for (int i = m_length - 1; i >= 0; i--)
+    for (int i = _length - 1; i >= 0; i--)
     {
-        if (m_data[i] == value)
+        if (_data[i] == value)
         {
             found = true;
             *index = i;
@@ -156,56 +158,58 @@ bool DynamicArray::find_last_of(int value, unsigned int *index)
 
 void DynamicArray::remove_last()
 {
-    if (m_length > 0)
+    if (_length > 0)
     {
-        auto new_m_data = new int[m_length - 1];
-        for (int i = 0; i < m_length - 1; i++)
+        auto new_m_data = new int[_length - 1];
+        for (int i = 0; i < _length - 1; i++)
         {
-            new_m_data[i] = m_data[i];
+            new_m_data[i] = _data[i];
         }
         this->~DynamicArray();
-        m_data = new_m_data;
-        m_length -= 1;
+        _data = new_m_data;
+        _length -= 1;
     }
 }
 
 void DynamicArray::remove_first()
 {
-    if (m_length > 0)
+    if (_length > 0)
     {
-        auto new_m_data = new int[m_length - 1];
-        for (int i = 1; i < m_length; i++)
+        auto new_m_data = new int[_length - 1];
+        for (int i = 1; i < _length; i++)
         {
-            new_m_data[i - 1] = m_data[i];
+            new_m_data[i - 1] = _data[i];
         }
         this->~DynamicArray();
-        m_data = new_m_data;
-        m_length -= 1;
+        _data = new_m_data;
+        _length -= 1;
     }
 }
 
 void DynamicArray::clear()
 {
     this->~DynamicArray();
-    this->m_data = nullptr;
-    m_length = 0;
-    m_capacity = 0;
+    this->_data = nullptr;
+    _length = 0;
+    _capacity = 0;
 }
+#pragma endregion
 
-// Operator Overloads
+#pragma region Operator Overloads
 int &DynamicArray::operator[](unsigned int index)
 {
-    return m_data[index];
+    return _data[index];
 }
 
 DynamicArray &DynamicArray::operator=(const DynamicArray &other)
 {
-    m_length = other.m_length;
-    m_capacity = other.m_capacity;
-    m_scaling_factor = other.m_scaling_factor;
-    m_data = new int[m_capacity];
-    std::memcpy(m_data, other.m_data, sizeof(int) * m_length);
+    _length = other._length;
+    _capacity = other._capacity;
+    _scaling_factor = other._scaling_factor;
+    _data = new int[_capacity];
+    std::memcpy(_data, other._data, sizeof(int) * _length);
 
     // this allows statements such as (a = b = c) assuming a, b, and c are all the DynamicArray type
     return (*this);
 }
+#pragma endregion

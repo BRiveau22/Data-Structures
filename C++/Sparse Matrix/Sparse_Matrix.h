@@ -8,29 +8,35 @@
 class Sparse_Matrix
 {
 private:
-	int rows;
-	int cols;
-	Node *head;
-	Node *tail;
-	int num_elements;
+#pragma region Private Properties
+	int _rows;
+	int _cols;
+	Node *_head;
+	Node *_tail;
+	int _num_elements;
+#pragma endregion
 
-	// Private Methods
+#pragma region Private Methods
 	std::vector<std::vector<int>> add(Sparse_Matrix longer, Sparse_Matrix shorter, int max_row, int max_col);
 	std::vector<std::vector<int>> multiply(Sparse_Matrix first, Sparse_Matrix second);
 	std::pair<int, int> get_max_row_col(Sparse_Matrix other);
+#pragma endregion
 
 public:
-	// Constructors
+#pragma region Constructors
 	Sparse_Matrix();
 	Sparse_Matrix(std::vector<std::vector<int>> matrix);
+#pragma endregion
 
-	// Destructor
+#pragma region Destructor
 	~Sparse_Matrix();
+#pragma endregion
 
-	// Public Methods
+#pragma region Public Methods
 	Sparse_Matrix multiply(Sparse_Matrix mult_matrix);
 	Sparse_Matrix add(Sparse_Matrix add_matrix);
 	void insert(int row, int col, int val);
 	void print_matrix();
+#pragma endregion
 };
 #endif

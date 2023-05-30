@@ -1,39 +1,41 @@
 #include "Priority_Node.h"
 
-// Constructors
+#pragma region Constructors
 Priority_Node::Priority_Node()
 {
-    this->data = 0;
-    this->next = nullptr;
-    this->priority = 0;
+    this->_data = 0;
+    this->_next = nullptr;
+    this->_priority = 0;
 }
 
 Priority_Node::Priority_Node(int data)
 {
-    this->data = data;
-    this->next = nullptr;
-    this->priority = 0;
+    this->_data = data;
+    this->_next = nullptr;
+    this->_priority = 0;
 }
 
 Priority_Node::Priority_Node(int data, Priority_Node *next)
 {
-    this->data = data;
-    this->next = next;
-    this->priority = 0;
+    this->_data = data;
+    this->_next = next;
+    this->_priority = 0;
 }
 
 Priority_Node::Priority_Node(int data, int priority)
 {
-    this->data = data;
-    this->next = nullptr;
-    this->priority = priority;
+    this->_data = data;
+    this->_next = nullptr;
+    this->_priority = priority;
 }
+#pragma endregion
 
-// Destructor
+#pragma region Destructor
 Priority_Node::~Priority_Node()
 {
-    if (this->next != nullptr)
+    if (this->_next != nullptr)
     {
-        delete this->next;
+        delete this->_next;
     }
 }
+#pragma endregion

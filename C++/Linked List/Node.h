@@ -3,19 +3,23 @@
 class Node
 {
 private:
-    int data;
-    Node *next;
+#pragma region Private Properties
+    int _data;
+    Node *_next;
+#pragma endregion
 
     friend class LinkedList;
 
 public:
-    // Constructors
+#pragma region Constructors
     Node();
     Node(int data);
     Node(int data, Node *next);
+#pragma endregion
 
-    // Destructor
+#pragma region Destructor
     ~Node();
+#pragma endregion
 };
 
 #endif

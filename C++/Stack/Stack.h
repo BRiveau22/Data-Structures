@@ -7,24 +7,29 @@
 class Stack
 {
 private:
-    Node *top;
-    unsigned int size;
+#pragma region Private Properties
+    Node *_top;
+    unsigned int _size;
+#pragma endregion
 
 public:
-    // Constructors
+#pragma region Constructors
     Stack();
     Stack(int data);
     Stack(std::vector<int> data);
+#pragma endregion
 
-    // Destructor
+#pragma region Destructor
     ~Stack();
+#pragma endregion
 
-    // Methods
+#pragma region Public Methods
     void push(int data);
     int pop();
     int peek();
     bool is_empty();
     unsigned int get_size();
+#pragma endregion
 };
 
 #endif

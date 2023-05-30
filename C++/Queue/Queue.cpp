@@ -1,88 +1,90 @@
 #include "Queue.h"
 
-// Constructors
+#pragma region Constructors
 Queue::Queue()
 {
-    this->head = nullptr;
-    this->tail = nullptr;
-    this->size = 0;
+    this->_head = nullptr;
+    this->_tail = nullptr;
+    this->_size = 0;
 }
 
 Queue::Queue(int data)
 {
-    this->head = new Node(data);
-    this->tail = head;
-    this->size = 1;
+    this->_head = new Node(data);
+    this->_tail = _head;
+    this->_size = 1;
 }
 
 Queue::Queue(std::vector<int> vec)
 {
     if (vec.empty())
     {
-        this->head = nullptr;
-        this->tail = nullptr;
-        this->size = 0;
+        this->_head = nullptr;
+        this->_tail = nullptr;
+        this->_size = 0;
     }
     else
     {
-        this->head = new Node(vec[0]);
-        this->tail = head;
-        Node *temp = this->head;
+        this->_head = new Node(vec[0]);
+        this->_tail = _head;
+        Node *temp = this->_head;
 
         for (int i = 1; i < vec.size(); i++)
         {
-            temp->next = new Node(vec[i]);
-            temp = temp->next;
-            this->tail = temp;
+            temp->_next = new Node(vec[i]);
+            temp = temp->_next;
+            this->_tail = temp;
         }
     }
-    this->size = vec.size();
+    this->_size = vec.size();
 }
+#pragma endregion
 
-// Destructor
+#pragma region Destructor
 Queue::~Queue()
 {
-    delete this->head;
-    this->head = nullptr;
-    this->tail = nullptr;
+    delete this->_head;
+    this->_head = nullptr;
+    this->_tail = nullptr;
 }
+#pragma endregion
 
-// Methods
+#pragma region Public Methods
 void Queue::enqueue(int data)
 {
-    if (head == nullptr)
+    if (_head == nullptr)
     {
-        this->head = new Node(data);
-        this->tail = head;
+        this->_head = new Node(data);
+        this->_tail = _head;
     }
     else
     {
-        this->tail->next = new Node(data);
-        this->tail = this->tail->next;
+        this->_tail->_next = new Node(data);
+        this->_tail = this->_tail->_next;
     }
 
-    this->size++;
+    this->_size++;
 }
 
 void Queue::dequeue()
 {
-    Node *tmp = this->head;
+    Node *tmp = this->_head;
 
-    if (this->size > 0 || tmp != nullptr)
+    if (this->_size > 0 || tmp != nullptr)
     {
-        this->head = tmp->next;
-        tmp->next = nullptr;
+        this->_head = tmp->_next;
+        tmp->_next = nullptr;
         delete tmp;
 
-        this->size--;
+        this->_size--;
     }
 }
 
 int Queue::peek()
 {
-    if (head != nullptr)
+    if (_head != nullptr)
     {
-        return this->head->data;
+        return this->_head->_data;
     }
     else
     {
@@ -92,19 +94,20 @@ int Queue::peek()
 
 int Queue::get_size()
 {
-    return this->size;
+    return this->_size;
 }
 
 std::string Queue::to_string()
 {
     std::string stringified;
-    Node *tmp = this->head;
+    Node *tmp = this->_head;
 
     while (tmp != nullptr)
     {
-        stringified += std::to_string(tmp->data) + " ";
-        tmp = tmp->next;
+        stringified += std::to_string(tmp->_data) + " ";
+        tmp = tmp->_next;
     }
 
     return stringified;
 }
+#pragma endregion

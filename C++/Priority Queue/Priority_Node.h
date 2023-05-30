@@ -3,21 +3,25 @@
 class Priority_Node
 {
 private:
-    int data;
-    Priority_Node *next;
-    int priority;
+#pragma region Private Properties
+    int _data;
+    Priority_Node *_next;
+    int _priority;
+#pragma endregion
 
     friend class Priority_Queue;
 
 public:
-    // Constructors
+#pragma region Constructors
     Priority_Node();
     Priority_Node(int data);
     Priority_Node(int data, Priority_Node *next);
     Priority_Node(int data, int priority);
+#pragma endregion
 
-    // Destructor
+#pragma region Destructor
     ~Priority_Node();
+#pragma endregion
 };
 
 #endif

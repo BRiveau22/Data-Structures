@@ -6,23 +6,28 @@
 class Queue
 {
 private:
-    Node *head;
-    Node *tail;
-    unsigned int size;
+#pragma region Private Properties
+    Node *_head;
+    Node *_tail;
+    unsigned int _size;
+#pragma endregion
 
 public:
-    // Constructors
+#pragma region Constructors
     Queue();
     Queue(int data);
     Queue(std::vector<int> vec);
+#pragma endregion
 
-    // Destructor
+#pragma region Destructor
     ~Queue();
+#pragma endregion
 
-    // Methods
+#pragma region Public Methods
     void enqueue(int data);
     void dequeue();
     int peek();
     int get_size();
     std::string to_string();
+#pragma endregion
 };

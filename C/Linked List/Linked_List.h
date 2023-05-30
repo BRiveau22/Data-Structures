@@ -5,8 +5,8 @@
 
 typedef struct LinkedList
 {
-    Node *head;
-    int size;
+    Node *_head;
+    int _size;
 } LinkedList;
 
 #pragma region Constructor

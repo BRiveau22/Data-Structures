@@ -3,21 +3,25 @@
 class Node
 {
 private:
-    int row;
-    int col;
-    int val;
-    Node *next;
+#pragma region Private Properties
+    int _row;
+    int _col;
+    int _val;
+    Node *_next;
+#pragma endregion
 
     friend class Sparse_Matrix;
 
 public:
-    // Constructors
+#pragma region Constructors
     Node();
     Node(int row, int col, int val);
     Node(int row, int col, int val, Node *next);
+#pragma endregion
 
-    // Destructor
+#pragma region Destructor
     ~Node();
+#pragma endregion
 };
 
 #endif

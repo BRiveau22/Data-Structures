@@ -5,26 +5,32 @@
 class BSTNode
 {
 private:
-	int data;
-	BSTNode *left;
-	BSTNode *right;
+#pragma region Private Properties
+	int _data;
+	BSTNode *_left;
+	BSTNode *_right;
+#pragma endregion
 
 	friend class BSTree;
 
 public:
-	// Constructors
+#pragma region Constructor
 	BSTNode(int data);
+#pragma endregion
 
-	// Destructor
+#pragma region Destructor
 	~BSTNode();
+#pragma endregion
 };
 
 class BSTree
 {
 private:
-	BSTNode *root;
+#pragma region Private properties
+	BSTNode *_root;
+#pragma endregion
 
-	// Private methods
+#pragma region Private methods
 	void destroy(BSTNode *current_node);
 	BSTNode *insert(BSTNode *current_node, int data);
 	BSTNode *remove(BSTNode *current_node, int data);
@@ -34,15 +40,18 @@ private:
 	void postorder(BSTNode *root, std::ostream &os);
 	BSTNode *find_ios(BSTNode *current_node);
 	BSTNode *find_iop(BSTNode *current_node);
+#pragma endregion
 
 public:
-	// Constructors
+#pragma region Constructors
 	BSTree();
+#pragma endregion
 
-	// Destructor
+#pragma region Destructor
 	~BSTree();
+#pragma endregion
 
-	// Public methods
+#pragma region Public methods
 	void insert(int data);
 	int height();
 	void remove(int data);
@@ -50,6 +59,7 @@ public:
 	void inorder(std::ostream &os = std::cout);
 	void postorder(std::ostream &os = std::cout);
 	bool search(int data);
+#pragma endregion
 };
 
 #endif

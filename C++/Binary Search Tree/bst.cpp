@@ -1,31 +1,35 @@
 #include "bst.h"
 
-// Node Constructors
+#pragma region Node Constructor
 BSTNode::BSTNode(int data)
 {
-	this->data = data;
-	this->left = nullptr;
-	this->right = nullptr;
+	this->_data = data;
+	this->_left = nullptr;
+	this->_right = nullptr;
 }
+#pragma endregion
 
-// Node Destructor
+#pragma region Node Destructor
 BSTNode::~BSTNode()
 {
 }
+#pragma endregion
 
-// Tree Constructors
+#pragma region Tree Constructor
 BSTree::BSTree()
 {
-	this->root = nullptr;
+	this->_root = nullptr;
 }
+#pragma endregion
 
-// Tree Destructor
+#pragma region Tree Destructor
 BSTree::~BSTree()
 {
-	destroy(this->root);
+	destroy(this->_root);
 }
+#pragma endregion
 
-// Private Methods
+#pragma region Private Methods
 void BSTree::destroy(BSTNode *current_node)
 {
 	if (current_node == nullptr)
@@ -33,8 +37,8 @@ void BSTree::destroy(BSTNode *current_node)
 		return;
 	}
 
-	destroy(current_node->left);
-	destroy(current_node->right);
+	destroy(current_node->_left);
+	destroy(current_node->_right);
 	delete current_node;
 }
 
@@ -45,13 +49,13 @@ BSTNode *BSTree::insert(BSTNode *current_node, int data)
 		return new BSTNode(data);
 	}
 
-	if (data < current_node->data)
+	if (data < current_node->_data)
 	{
-		current_node->left = this->insert(current_node->left, data);
+		current_node->_left = this->insert(current_node->_left, data);
 	}
 	else
 	{
-		current_node->right = this->insert(current_node->right, data);
+		current_node->_right = this->insert(current_node->_right, data);
 	}
 	return current_node;
 }
@@ -63,8 +67,8 @@ int BSTree::height(BSTNode *current_node)
 		return 0;
 	}
 
-	int left_height = this->height(current_node->left);
-	int right_height = this->height(current_node->right);
+	int left_height = this->height(current_node->_left);
+	int right_height = this->height(current_node->_right);
 
 	if (left_height > right_height)
 	{
@@ -78,12 +82,12 @@ int BSTree::height(BSTNode *current_node)
 
 BSTNode *BSTree::find_ios(BSTNode *current_node)
 {
-	if (current_node->left == nullptr)
+	if (current_node->_left == nullptr)
 	{
 		return current_node;
 	}
 
-	return this->find_ios(current_node->left);
+	return this->find_ios(current_node->_left);
 }
 
 BSTNode *BSTree::remove(BSTNode *current_node, int data)
@@ -93,24 +97,24 @@ BSTNode *BSTree::remove(BSTNode *current_node, int data)
 		return current_node;
 	}
 
-	if (current_node->data == data)
+	if (current_node->_data == data)
 	{
 		// 2 children
-		if (current_node->right != nullptr && current_node->left != nullptr)
+		if (current_node->_right != nullptr && current_node->_left != nullptr)
 		{
 			BSTNode *ios_node = find_ios(current_node);
-			current_node->data = ios_node->data;
-			current_node->right = this->remove(current_node->right, ios_node->data);
+			current_node->_data = ios_node->_data;
+			current_node->_right = this->remove(current_node->_right, ios_node->_data);
 		}
 		// 1 child (right)
-		else if (current_node->right != nullptr)
+		else if (current_node->_right != nullptr)
 		{
-			current_node = current_node->right;
+			current_node = current_node->_right;
 		}
 		// 1 child (left)
-		else if (current_node->left != nullptr)
+		else if (current_node->_left != nullptr)
 		{
-			current_node = current_node->left;
+			current_node = current_node->_left;
 		}
 		// No children
 		else
@@ -119,13 +123,13 @@ BSTNode *BSTree::remove(BSTNode *current_node, int data)
 			return nullptr;
 		}
 	}
-	else if (data < current_node->data)
+	else if (data < current_node->_data)
 	{
-		current_node->left = this->remove(current_node->left, data);
+		current_node->_left = this->remove(current_node->_left, data);
 	}
 	else
 	{
-		current_node->right = this->remove(current_node->right, data);
+		current_node->_right = this->remove(current_node->_right, data);
 	}
 
 	return current_node;
@@ -137,9 +141,9 @@ void BSTree::preorder(BSTNode *current_node, std::ostream &os)
 	{
 		return;
 	}
-	os << current_node->data << " ";
-	this->preorder(current_node->left, os);
-	this->preorder(current_node->right, os);
+	os << current_node->_data << " ";
+	this->preorder(current_node->_left, os);
+	this->preorder(current_node->_right, os);
 }
 
 void BSTree::inorder(BSTNode *current_node, std::ostream &os)
@@ -148,9 +152,9 @@ void BSTree::inorder(BSTNode *current_node, std::ostream &os)
 	{
 		return;
 	}
-	this->inorder(current_node->left, os);
-	os << current_node->data << " ";
-	this->inorder(current_node->right, os);
+	this->inorder(current_node->_left, os);
+	os << current_node->_data << " ";
+	this->inorder(current_node->_right, os);
 }
 
 void BSTree::postorder(BSTNode *current_node, std::ostream &os)
@@ -159,73 +163,75 @@ void BSTree::postorder(BSTNode *current_node, std::ostream &os)
 	{
 		return;
 	}
-	this->postorder(current_node->left, os);
-	this->postorder(current_node->right, os);
-	os << current_node->data << " ";
+	this->postorder(current_node->_left, os);
+	this->postorder(current_node->_right, os);
+	os << current_node->_data << " ";
 }
+#pragma endregion
 
-// Public Methods
+#pragma region Public Methods
 void BSTree::insert(int data)
 {
 	if (!this->search(data))
 	{
-		this->root = this->insert(this->root, data);
+		this->_root = this->insert(this->_root, data);
 	}
 }
 
 int BSTree::height()
 {
-	if (this->root == nullptr)
+	if (this->_root == nullptr)
 	{
 		return -1;
 	}
 
-	return this->height(this->root);
+	return this->height(this->_root);
 }
 
 void BSTree::remove(int data)
 {
 	if (this->search(data))
 	{
-		this->root = this->remove(this->root, data);
+		this->_root = this->remove(this->_root, data);
 	}
 }
 
 void BSTree::preorder(std::ostream &os)
 {
-	this->preorder(this->root, os);
+	this->preorder(this->_root, os);
 	os << "\n";
 }
 
 void BSTree::inorder(std::ostream &os)
 {
-	this->inorder(this->root, os);
+	this->inorder(this->_root, os);
 	os << "\n";
 }
 
 void BSTree::postorder(std::ostream &os)
 {
-	this->postorder(this->root, os);
+	this->postorder(this->_root, os);
 	os << "\n";
 }
 
 bool BSTree::search(int data)
 {
-	BSTNode *current_node = this->root;
+	BSTNode *current_node = this->_root;
 	while (current_node != nullptr)
 	{
-		if (current_node->data == data)
+		if (current_node->_data == data)
 		{
 			return true;
 		}
-		else if (data < current_node->data)
+		else if (data < current_node->_data)
 		{
-			current_node = current_node->left;
+			current_node = current_node->_left;
 		}
 		else
 		{
-			current_node = current_node->right;
+			current_node = current_node->_right;
 		}
 	}
 	return false;
 }
+#pragma endregion

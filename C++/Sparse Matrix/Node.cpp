@@ -1,35 +1,37 @@
 #include "Node.h"
 
-// Constructors
+#pragma region Constructors
 Node::Node()
 {
-    this->row = 0;
-    this->col = 0;
-    this->val = 0;
-    this->next = nullptr;
+    this->_row = 0;
+    this->_col = 0;
+    this->_val = 0;
+    this->_next = nullptr;
 }
 
 Node::Node(int row, int col, int val)
 {
-    this->row = row;
-    this->col = col;
-    this->val = val;
-    this->next = nullptr;
+    this->_row = row;
+    this->_col = col;
+    this->_val = val;
+    this->_next = nullptr;
 }
 
 Node::Node(int row, int col, int val, Node *next)
 {
-    this->row = row;
-    this->col = col;
-    this->val = val;
-    this->next = next;
+    this->_row = row;
+    this->_col = col;
+    this->_val = val;
+    this->_next = next;
 }
+#pragma endregion
 
-// Destructor
+#pragma region Destructor
 Node::~Node()
 {
-    if (this->next != nullptr)
+    if (this->_next != nullptr)
     {
-        delete this->next;
+        delete this->_next;
     }
 }
+#pragma endregion

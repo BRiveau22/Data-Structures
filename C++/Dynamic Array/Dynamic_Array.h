@@ -7,22 +7,26 @@
 class DynamicArray
 {
 private:
-    unsigned int m_length;
-    unsigned int m_capacity;
-    double m_scaling_factor;
-    int *m_data;
+#pragma region Private Properties
+    unsigned int _length;
+    unsigned int _capacity;
+    double _scaling_factor;
+    int *_data;
+#pragma endregion
 
 public:
-    // Constructors
+#pragma region Constructors
     DynamicArray();
     DynamicArray(double scaling_factor, unsigned int capacity);
     DynamicArray(double scaling_factor, unsigned int length, int default_value);
     DynamicArray(const DynamicArray &other);
+#pragma endregion
 
-    // Destructor
+#pragma region Destructor
     ~DynamicArray();
+#pragma endregion
 
-    // Methods
+#pragma region Public Methods
     unsigned int get_length();
     unsigned int get_capacity();
     double get_scaling_factor();
@@ -35,12 +39,15 @@ public:
     void remove_last();
     void remove_first();
     void clear();
+#pragma endregion
 
+#pragma region Operator Overloads
     // overloading the [] operator for read/write access
     int &operator[](unsigned int index);
 
     // assignment operator
     DynamicArray &operator=(const DynamicArray &other);
+#pragma endregion
 };
 
 #endif

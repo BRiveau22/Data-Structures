@@ -1,6 +1,6 @@
 #include "Hash_Table.h"
 
-// Constructors
+#pragma region Constructors
 Hash_Table::Hash_Table(int mode)
 {
     this->_mode = mode;
@@ -30,14 +30,16 @@ Hash_Table::Hash_Table(int mode, int table_size)
         this->_a_value = (double)rand() / (RAND_MAX + 1);
     }
 }
+#pragma endregion
 
-// Destructor
+#pragma region Destructor
 Hash_Table::~Hash_Table()
 {
 }
+#pragma endregion
 
-// Private Methods
-int Hash_Table::_num_digits()
+#pragma region Private Methods
+int Hash_Table::num_digits()
 {
     int temp_size = this->_table_size - 1;
     int r = 0;
@@ -50,22 +52,22 @@ int Hash_Table::_num_digits()
     return r;
 }
 
-int Hash_Table::_div_hash(int key)
+int Hash_Table::div_hash(int key)
 {
     int idx = key % this->_table_size;
     if (this->_table[idx] != 0)
     {
         this->_num_collisions++;
-        idx = this->_div_hash(key + 1);
+        idx = this->div_hash(key + 1);
     }
 
     return idx;
 }
 
-int Hash_Table::_mid_square_hash(int key)
+int Hash_Table::mid_square_hash(int key)
 {
     int idx;
-    int r = this->_num_digits();
+    int r = this->num_digits();
 
     std::string square = std::to_string(key * key);
     std::string sub_str = square.substr((square.size() / 2) - (r / 2), r);
@@ -74,15 +76,15 @@ int Hash_Table::_mid_square_hash(int key)
     if (this->_table[idx] != 0)
     {
         this->_num_collisions++;
-        idx = this->_mid_square_hash(key + 1);
+        idx = this->mid_square_hash(key + 1);
     }
     return idx;
 }
 
-int Hash_Table::_digit_folding_hash(int key)
+int Hash_Table::digit_folding_hash(int key)
 {
     int idx;
-    int r = this->_num_digits();
+    int r = this->num_digits();
 
     std::string key_str = std::to_string(key);
     while (key_str.size() > 0)
@@ -98,13 +100,13 @@ int Hash_Table::_digit_folding_hash(int key)
     if (this->_table[idx] != 0)
     {
         this->_num_collisions++;
-        idx = this->_digit_folding_hash(key + 1);
+        idx = this->digit_folding_hash(key + 1);
     }
 
     return idx;
 }
 
-int Hash_Table::_mult_hash(int key, double a)
+int Hash_Table::mult_hash(int key, double a)
 {
     int random = (key * a) + 0.5;
     int idx = this->_table_size * random;
@@ -112,13 +114,13 @@ int Hash_Table::_mult_hash(int key, double a)
     if (this->_table[idx] != 0)
     {
         this->_num_collisions++;
-        idx = this->_mult_hash(key + 1, a);
+        idx = this->mult_hash(key + 1, a);
     }
 
     return idx;
 }
 
-void Hash_Table::_resize_table()
+void Hash_Table::resize_table()
 {
     Hash_Table *new_table = new Hash_Table(this->_mode, this->_table_size * 2);
     for (int i = 0; i < this->_table_size; i++)
@@ -131,35 +133,37 @@ void Hash_Table::_resize_table()
 
     *this = *new_table;
 }
+#pragma endregion
 
-// Public Methods
+#pragma region Public Methods
 void Hash_Table::insert(int key)
 {
     if ((double)this->_num_elements / (double)this->_table_size > 0.7)
     {
-        this->_resize_table();
+        this->resize_table();
     }
 
     int idx;
     switch (this->_mode)
     {
     case 0:
-        idx = this->_div_hash(key);
+        idx = this->div_hash(key);
         break;
     case 1:
-        idx = this->_mid_square_hash(key);
+        idx = this->mid_square_hash(key);
         break;
     case 2:
-        idx = this->_digit_folding_hash(key);
+        idx = this->digit_folding_hash(key);
         break;
     case 3:
-        idx = this->_mult_hash(key, this->_a_value);
+        idx = this->mult_hash(key, this->_a_value);
         break;
     default:
-        idx = this->_div_hash(key);
+        idx = this->div_hash(key);
         break;
     }
 
     this->_table[idx] = key;
     this->_num_elements++;
 }
+#pragma endregion
