@@ -1,133 +1,142 @@
 public class Priority_Node
 {
-    private int data;
-    private int priority;
-    private Priority_Node next;
+    #region Properties
+    private int _data;
+    private int _priority;
+    private Priority_Node _next;
+    #endregion
 
-    // Constructors
+    #region Constructors
     public Priority_Node()
     {
-        this.data = 0;
-        this.priority = 0;
-        this.next = null;
+        this._data = 0;
+        this._priority = 0;
+        this._next = null;
     }
 
     public Priority_Node(int data)
     {
-        this.data = data;
-        this.priority = 0;
-        this.next = null;
+        this._data = data;
+        this._priority = 0;
+        this._next = null;
     }
 
     public Priority_Node(int data, int priority)
     {
-        this.data = data;
-        this.priority = priority;
-        this.next = null;
+        this._data = data;
+        this._priority = priority;
+        this._next = null;
     }
 
     public Priority_Node(int data, Priority_Node next)
     {
-        this.data = data;
-        this.priority = 0;
-        this.next = next;
+        this._data = data;
+        this._priority = 0;
+        this._next = next;
     }
 
     public Priority_Node(int data, int priority, Priority_Node next)
     {
-        this.data = data;
-        this.priority = priority;
-        this.next = next;
+        this._data = data;
+        this._priority = priority;
+        this._next = next;
     }
+    #endregion
 }
 
 public class Priority_Queue
 {
-    private Priority_Node front;
-    private Priority_Node back;
-    private int size;
+    #region Properties
+    private Priority_Node _front;
+    private Priority_Node _back;
+    private int _size;
+    #endregion
 
+    #region Constructors
     public Priority_Queue()
     {
-        this.front = null;
-        this.back = null;
-        this.size = 0;
+        this._front = null;
+        this._back = null;
+        this._size = 0;
     }
 
     public Priority_Queue(int data)
     {
-        this.front = new Priority_Node(data);
-        this.back = this.front;
-        this.size = 1;
+        this._front = new Priority_Node(data);
+        this._back = this._front;
+        this._size = 1;
     }
 
     public Priority_Queue(int[] arr)
     {
-        this.front = new Priority_Node(arr[0]);
-        this.back = this.front;
-        this.size = 1;
+        this._front = new Priority_Node(arr[0]);
+        this._back = this._front;
+        this._size = 1;
         for (int i = 1; i < arr.Length; i++)
         {
-            this.back.next = new Priority_Node(arr[i]);
-            this.back = this.back.next;
-            this.size++;
+            this._back._next = new Priority_Node(arr[i]);
+            this._back = this._back._next;
+            this._size++;
         }
     }
+    #endregion
 
+    #region Methods
     public void enqueue(int data, int priority)
     {
-        if (this.size == 0)
+        if (this._size == 0)
         {
-            this.front = new Priority_Node(data, priority);
-            this.back = this.front;
-            this.size = 1;
+            this._front = new Priority_Node(data, priority);
+            this._back = this._front;
+            this._size = 1;
             return;
         }
 
-        Priority_Node temp = this.front;
+        Priority_Node temp = this._front;
         Priority_Node prev = null;
-        while (temp != null && temp.priority >= priority)
+        while (temp != null && temp._priority >= priority)
         {
             prev = temp;
-            temp = temp.next;
+            temp = temp._next;
         }
 
         if (prev == null)
         {
-            this.front = new Priority_Node(data, priority, this.front);
-            this.size++;
+            this._front = new Priority_Node(data, priority, this._front);
+            this._size++;
             return;
         }
 
-        prev.next = new Priority_Node(data, priority, temp);
-        this.size++;
+        prev._next = new Priority_Node(data, priority, temp);
+        this._size++;
     }
 
     public void dequeue()
     {
-        if (this.size == 0)
+        if (this._size == 0)
         {
             print("Queue is empty");
             return;
         }
 
-        this.front = this.front.next;
-        this.size--;
+        this._front = this._front._next;
+        this._size--;
     }
 
     public int peek()
     {
-        if (this.size == 0)
+        if (this._size == 0)
         {
             print("Queue is empty");
             return -1;
         }
 
-        return this.front.data;
+        return this._front._data;
     }
 
     public int get_size()
     {
-        return this.size;
+        return this._size;
     }
+    #endregion
 }

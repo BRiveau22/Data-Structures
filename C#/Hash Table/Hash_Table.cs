@@ -1,13 +1,15 @@
 public class Hash_Table
 {
+    #region Properties
     private int[] _table;
     private int _mode;
     private int _num_collisions;
     private int _num_elements;
     private int _table_size;
     private double _a_value;
+    #endregion
 
-    // Constructors
+    #region Constructors
     public Hash_Table(int mode)
     {
         this._mode = mode;
@@ -38,9 +40,10 @@ public class Hash_Table
             this._a_value = new decimal(rand.NextDouble());
         }
     }
+    #endregion
 
 
-    // Private Methods
+    #region Private Methods
     private int num_digits()
     {
         int temp_size = this._table_size - 1;
@@ -140,9 +143,9 @@ public class Hash_Table
 
         this = new_table;
     }
+    #endregion
 
-
-    // Public Methods
+    #region Public Methods
     public void insert(int key)
     {
         if ((double)this._num_elements / (double)this._table_size > 0.7)
@@ -173,4 +176,5 @@ public class Hash_Table
         this._table[idx] = key;
         this._num_elements++;
     }
+    #endregion
 }

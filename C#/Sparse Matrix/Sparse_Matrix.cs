@@ -1,85 +1,91 @@
 public class Node
 {
-    private int row;
-    private int col;
-    private int value;
-    private Node next;
+    #region Properties
+    private int _row;
+    private int _col;
+    private int _value;
+    private Node _next;
+    #endregion
 
-    // Constructors
+    #region Constructors
     public Node()
     {
-        this.row = 0;
-        this.col = 0;
-        this.value = 0;
-        this.next = null;
+        this._row = 0;
+        this._col = 0;
+        this._value = 0;
+        this._next = null;
     }
 
     public Node(int row, int col, int value)
     {
-        this.row = row;
-        this.col = col;
-        this.value = value;
-        this.next = null;
+        this._row = row;
+        this._col = col;
+        this._value = value;
+        this._next = null;
     }
 
     public Node(int row, int col, int value, Node next)
     {
-        this.row = row;
-        this.col = col;
-        this.value = value;
-        this.next = next;
+        this._row = row;
+        this._col = col;
+        this._value = value;
+        this._next = next;
     }
+    #endregion
 }
 
 
 public class Sparse_Matrix
 {
-    private int rows;
-    private int cols;
-    private Node head;
-    private int num_elements;
+    #region Properties
+    private int _rows;
+    private int _cols;
+    private Node _head;
+    private int _num_elements;
+    #endregion
 
-    // Constructors
+    #region Constructors
     public Sparse_Matrix()
     {
-        this.rows = 0;
-        this.cols = 0;
-        this.head = null;
-        this.num_elements = 0;
+        this._rows = 0;
+        this._cols = 0;
+        this._head = null;
+        this._num_elements = 0;
     }
 
     public Sparse_Matrix(int[][] matrix)
     {
-        this.num_elements = 0;
+        this._num_elements = 0;
 
         for (int i = 0; i < matrix.Length; i++)
         {
             for (int j = 0; j < matrix[i].Length; j++)
             {
-                if (matrix[i][j] != 0 && this.head == null)
+                if (matrix[i][j] != 0 && this._head == null)
                 {
-                    this.head = new Node(i, j, matrix[i][j]);
-                    this.num_elements++;
+                    this._head = new Node(i, j, matrix[i][j]);
+                    this._num_elements++;
                 }
                 else if (matrix[i][j] != 0)
                 {
                     Node temp = this.find_tail();
-                    temp.next = new Node(i, j, matrix[i][j]);
-                    this.rows = temp.next.row + 1;
-                    this.cols = temp.next.col + 1;
-                    this.num_elements++;
+                    temp._next = new Node(i, j, matrix[i][j]);
+                    this._rows = temp.next.row + 1;
+                    this._cols = temp.next.col + 1;
+                    this._num_elements++;
                 }
             }
         }
     }
+    #endregion
 
-    // Private methods
+    #region Private methods
     private Node find_tail()
     {
-        Node temp = this.head;
-        while (temp.next != null)
+        Node temp = this._head;
+        while (temp._next != null)
         {
-            temp = temp.next;
+            temp = temp._next;
         }
 
         return temp;
@@ -89,18 +95,18 @@ public class Sparse_Matrix
     private int[][] add(Sparse_Matrix longer, Sparse_Matrix shorter, int max_row, int max_col)
     {
         int[][] out_matrix = new int[max_row][max_col];
-        Node temp = longer.head;
+        Node temp = longer._head;
         while (temp != null)
         {
-            out_matrix[temp.row][temp.col] = temp.value;
-            temp = temp.next;
+            out_matrix[temp._row][temp._col] = temp._value;
+            temp = temp._next;
         }
 
-        temp = shorter.head;
+        temp = shorter._head;
         while (temp != null)
         {
-            out_matrix[temp.row][temp.col] += temp.value;
-            temp = temp.next;
+            out_matrix[temp._row][temp._col] += temp._value;
+            temp = temp._next;
         }
 
         return out_matrix;
@@ -109,21 +115,21 @@ public class Sparse_Matrix
 
     private int[][] multiply(Sparse_Matrix first, Sparse_Matrix second)
     {
-        int[][] out_matrix = new int[first.rows][second.cols];
-        Node first_temp = first.head;
+        int[][] out_matrix = new int[first._rows][second._cols];
+        Node first_temp = first._head;
 
         while (first_temp != null)
         {
-            Node second_temp = second.head;
+            Node second_temp = second._head;
             while (second_temp != null)
             {
-                if (first_temp.col == second_temp.row)
+                if (first_temp._col == second_temp._row)
                 {
-                    out_matrix[first_temp.row][second_temp.col] += first_temp.value * second_temp.value;
+                    out_matrix[first_temp._row][second_temp._col] += first_temp._value * second_temp._value;
                 }
-                second_temp = second_temp.next;
+                second_temp = second_temp._next;
             }
-            first_temp = first_temp.next;
+            first_temp = first_temp._next;
         }
 
         return out_matrix;
@@ -132,24 +138,24 @@ public class Sparse_Matrix
 
     private int[] get_max_row_col(Sparse_Matrix other)
     {
-        int max_row = this.rows;
-        int max_col = this.cols;
+        int max_row = this._rows;
+        int max_col = this._cols;
 
-        if (other.rows > max_row)
+        if (other._rows > max_row)
         {
-            max_row = other.rows;
+            max_row = other._rows;
         }
 
-        if (other.cols > max_col)
+        if (other._cols > max_col)
         {
-            max_col = other.cols;
+            max_col = other._cols;
         }
 
         return new int[] { max_row, max_col };
     }
+    #endregion
 
-
-    // Public methods
+    #region Public methods
     public Sparse_Matrix multiply(Sparse_Matrix mult_matrix)
     {
         int[][] out_matrix = this.multiply(this, mult_matrix);
@@ -170,52 +176,53 @@ public class Sparse_Matrix
 
     public void insert(int row, int col, int value)
     {
-        Node current_node = this.head;
+        Node current_node = this._head;
 
-        while (current_node.next != nullptr)
+        while (current_node._next != nullptr)
         {
             //Handles the case where the node is inserted in the middle
             if (current_node.next.row > row || (current_node.next.row == row && current_node.next.col > col))
             {
-                current_node.next = new Node(row, col, value, current_node.next);
-                this.num_elements++;
+                current_node._next = new Node(row, col, value, current_node._next);
+                this._num_elements++;
             }
             //Handles the case where the node is inserted in the middle and the location is the same
             else if (current_node.next.row == row && current_node.next.col == col)
             {
                 current_node.next.val = value;
             }
-            current_node = current_node.next;
+            current_node = current_node._next;
         }
 
         //Handles the case where the node is inserted at the tail or the head of an otherwise empty matrix
-        if (current_node.next == nullptr && (current_node.row <= row || (current_node.row == row && current_node.col < col)))
+        if (current_node._next == nullptr && (current_node._row <= row || (current_node._row == row && current_node._col < col)))
         {
-            current_node.next = new Node(row, col, value);
-            this.num_elements++;
+            current_node._next = new Node(row, col, value);
+            this._num_elements++;
         }
         //Handles the case where the node is inserted at the head of an otherwise empty matrix
-        else if (current_node == this.head && current_node.next == nullptr && (current_node.row > row || (current_node.row == row && current_node.col > col)))
+        else if (current_node == this._head && current_node._next == nullptr && (current_node._row > row || (current_node._row == row && current_node._col > col)))
         {
             Node new_node = new Node(row, col, value, current_node);
-            this.head = new_node;
-            this.num_elements++;
+            this._head = new_node;
+            this._num_elements++;
         }
         //Handles the case where the node is inserted at the tail, or the head of an otherwise empty matrix and the location is the same
-        else if (current_node.next == nullptr && current_node.row == row && current_node.col == col)
+        else if (current_node._next == nullptr && current_node._row == row && current_node._col == col)
         {
-            current_node.value = value;
+            current_node._value = value;
         }
     }
 
 
     public void print_matrix()
     {
-        Node temp = this.head;
+        Node temp = this._head;
         while (temp != null)
         {
-            Console.WriteLine("Row: {0}, Col: {1}, Value: {2}", temp.row, temp.col, temp.value);
-            temp = temp.next;
+            Console.WriteLine("Row: {0}, Col: {1}, Value: {2}", temp._row, temp._col, temp._value);
+            temp = temp._next;
         }
     }
+    #endregion
 }

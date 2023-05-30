@@ -1,73 +1,79 @@
 public class Node
 {
-    private int data;
-    private Node next;
+    #region Properties
+    private int _data;
+    private Node _next;
+    #endregion
 
-    // Constructors
+    #region Constructors
     public Node()
     {
-        this.data = 0;
-        this - ndext = null;
+        this._data = 0;
+        this._next = null;
     }
 
     public Node(int data)
     {
-        this.data = data;
-        this.next = null;
+        this._data = data;
+        this._next = null;
     }
 
     public Node(int data, Node next)
     {
-        this.data = data;
-        this.next = next;
+        this._data = data;
+        this._next = next;
     }
+    #endregion
 }
 
 public class Linked_List
 {
-    private Node head;
-    private int size;
+    #region Properties
+    private Node _head;
+    private int _size;
+    #endregion
 
-    // Constructors
+    #region Constructors
     public Linked_List()
     {
-        this.head = null;
-        this.size = 0;
+        this._head = null;
+        this._size = 0;
     }
 
     public Linked_List(int data)
     {
-        this.head = new Node(data);
-        this.size = 1;
+        this._head = new Node(data);
+        this._size = 1;
     }
 
     public Linked_List(int[] data)
     {
-        this.head = new Node(data[0]);
-        this.size = 1;
-        Node current = this.head;
+        this._head = new Node(data[0]);
+        this._size = 1;
+        Node current = this._head;
         for (int i = 1; i < data.Length; i++)
         {
-            current.next = new Node(data[i]);
-            current = current.next;
-            this.size++;
+            current._next = new Node(data[i]);
+            current = current._next;
+            this._size++;
         }
     }
+    #endregion
 
-    // Methods
+    #region Methods
     public void push_front(int data)
     {
-        this.head = new Node(data, this.head);
+        this._head = new Node(data, this._head);
     }
 
     public void push_back(int data)
     {
-        Node current = this.head;
-        while (current.next != null)
+        Node current = this._head;
+        while (current._next != null)
         {
-            current = current.next;
+            current = current._next;
         }
-        current.next = new Node(data);
+        current._next = new Node(data);
     }
 
     public void insert(int data, int idx)
@@ -76,57 +82,58 @@ public class Linked_List
         {
             this.push_front(data);
         }
-        else if (idx >= this.size)
+        else if (idx >= this._size)
         {
             this.push_back(data);
         }
         else
         {
-            Node current = this.head;
+            Node current = this._head;
             for (int i = 0; i < idx - 1; i++)
             {
-                current = current.next;
+                current = current._next;
             }
-            current.next = new Node(data, current.next);
+            current._next = new Node(data, current._next);
         }
     }
 
     public void remove(int data)
     {
-        Node current = this.head;
-        while (current.next != null)
+        Node current = this._head;
+        while (current._next != null)
         {
             if (current.next.data == data)
             {
-                current.next = current.next.next;
+                current._next = current.next.next;
                 return;
             }
-            current = current.next;
+            current = current._next;
         }
     }
 
     public bool contains(int data)
     {
-        Node current = this.head;
-        while (current.next != null)
+        Node current = this._head;
+        while (current._next != null)
         {
-            if (current.data == data)
+            if (current._data == data)
             {
                 return true;
             }
-            current = current.next;
+            current = current._next;
         }
         return false;
     }
 
     public void print()
     {
-        Node current = this.head;
+        Node current = this._head;
         while (current != null)
         {
-            Console.Write(current.data + " ");
-            current = current.next;
+            Console.Write(current._data + " ");
+            current = current._next;
         }
         Console.WriteLine();
     }
+    #endregion
 }

@@ -1,64 +1,70 @@
 public class Node
 {
-    private int data;
-    private Node next;
+    #region Properties
+    private int _data;
+    private Node _next;
+    #endregion
 
-    // Constructors
+    #region Constructors
     public Node()
     {
-        this.data = 0;
-        this.next = null;
+        this._data = 0;
+        this._next = null;
     }
     public Node(int data)
     {
-        this.data = data;
-        this.next = null;
+        this._data = data;
+        this._next = null;
     }
     public Node(int data, Node next)
     {
-        this.data = data;
-        this.next = next;
+        this._data = data;
+        this._next = next;
     }
+    #endregion
 }
 
 public class Stack
 {
-    private Node top;
-    private int size;
+    #region Properties
+    private Node _top;
+    private int _size;
+    #endregion
 
-    // Constructors
+    #region Constructors
     public Stack()
     {
-        this.top = null;
+        this._top = null;
         this.size = 0;
     }
 
     public Stack(int data)
     {
-        this.top = new Node(data);
+        this._top = new Node(data);
         this.size = 1;
     }
 
     public Stack(int[] data)
     {
-        this.top = new Node(data[0]);
+        this._top = new Node(data[0]);
         this.size = 1;
 
-        Node current = this.top;
+        Node current = this._top;
         for (int i = 0; i < data.Length; i++)
         {
-            current.next = new Node(data[i]);
-            current = current.next;
+            current._next = new Node(data[i]);
+            current = current._next;
             this.size++;
         }
     }
+    #endregion
 
-    // Methods
+    #region Methods
     public void push(int data)
     {
         Node newNode = new Node(data);
-        newNode.next = this.top;
-        this.top = newNode;
+        newNode._next = this._top;
+        this._top = newNode;
         this.size++;
     }
 
@@ -66,8 +72,8 @@ public class Stack
     {
         if (!isEmpty)
         {
-            int data = this.top.data;
-            this.top = this.top.next;
+            int data = this._top._data;
+            this._top = this._top._next;
             this.size--;
             return data;
         }
@@ -79,7 +85,7 @@ public class Stack
     {
         if (!isEmpty)
         {
-            return this.top.data;
+            return this._top._data;
         }
 
         return -1;
@@ -94,4 +100,5 @@ public class Stack
     {
         return this.size;
     }
+    #endregion
 }
