@@ -108,22 +108,22 @@ class SparseMatrix:
 
     # Public Methods
     def add(self, add_matrix):
-        extremes = self.get_max_row_col(self, add_matrix)
+        extremes = self.get_max_row_col(add_matrix)
         max_row = extremes[0]
         max_col = extremes[1]
 
         # Reassigns the new matrix to the sum of the two matrices
         if self._num_elements >= add_matrix._num_elements:
-            new_matrix = self._add(self, add_matrix, max_row, max_col)
+            new_matrix = self._add(add_matrix, max_row, max_col)
         else:
-            new_matrix = self._add(add_matrix, self, max_row, max_col)
+            new_matrix = add_matrix._add(self, max_row, max_col)
 
         # Creates a sparse matrix from the new matrix
         return SparseMatrix(new_matrix)
 
     def multiply(self, mult_matrix):
         # Reassigns the new matrix to the product of the two matrices
-        new_matrix = self._multiply(self, mult_matrix)
+        new_matrix = self._multiply(mult_matrix)
 
         # Creates a sparse matrix from the new matrix
         out_matrix = SparseMatrix(new_matrix)
