@@ -1,6 +1,6 @@
 #include "BST_Node.h"
 
-// Constructor
+#pragma region Constructor
 BST_Node *create_node()
 {
     BST_Node *node = (BST_Node *)malloc(sizeof(BST_Node));
@@ -9,8 +9,9 @@ BST_Node *create_node()
     node->_right = NULL;
     return node;
 }
+#pragma endregion
 
-// Destructor
+#pragma region Destructor
 void destroy_node(BST_Node *root)
 {
     if (root != NULL)
@@ -20,3 +21,4 @@ void destroy_node(BST_Node *root)
         free(root);
     }
 }
+#pragma endregion

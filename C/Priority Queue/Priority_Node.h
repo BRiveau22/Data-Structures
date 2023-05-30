@@ -9,13 +9,14 @@ typedef struct Priority_Node
     struct Priority_Node *_next;
 } Priority_Node;
 
-// Constructors
+#pragma region Constructors
 Priority_Node *create_node();
 Priority_Node *create_node_data(int data);
 Priority_Node *create_node_next(int data, Priority_Node *next);
 Priority_Node *create_node_priority(int data, int priority);
+#pragma endregion
 
-// Destructor
+#pragma region Destructor
 void destroy_node(Priority_Node *node);
-
+#pragma endregion
 #endif

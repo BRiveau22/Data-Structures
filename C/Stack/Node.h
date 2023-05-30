@@ -8,12 +8,13 @@ typedef struct Node
     struct Node *_next;
 } Node;
 
-// Constructors
+#pragma region Constructors
 Node *create_node();
 Node *create_node_data(int data);
 Node *create_node_next(int data, Node *next);
+#pragma endregion
 
-// Destructor
+#pragma region Destructor
 void destroy_node(Node *node);
-
+#pragma endregion
 #endif

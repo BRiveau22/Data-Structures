@@ -8,19 +8,21 @@ typedef struct Stack
     int _size;
 } Stack;
 
-// Constructors
+#pragma region Constructors
 Stack *create_stack();
 Stack *create_stack_single(int data);
 Stack *create_stack_list(int data[]);
+#pragma endregion
 
-// Destructor
+#pragma region Destructor
 void destroy_stack(Stack *stack);
+#pragma endregion
 
-// Methods
+#pragma region Methods
 void push(Stack *stack, int data);
 int pop(Stack *stack);
 int peek(Stack *stack);
 int is_empty(Stack *stack);
 int size(Stack *stack);
-
+#pragma endregion
 #endif

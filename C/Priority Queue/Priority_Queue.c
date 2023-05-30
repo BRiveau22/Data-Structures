@@ -1,6 +1,6 @@
 #include "Priority_Queue.h"
 
-// Constructors
+#pragma region Constructors
 Priority_Queue *create_queue()
 {
     Priority_Queue *queue = (Priority_Queue *)malloc(sizeof(Priority_Queue));
@@ -31,8 +31,9 @@ Priority_Queue *create_queue_arr(int *arr)
     }
     return queue;
 }
+#pragma endregion
 
-// Destructor
+#pragma region Destructor
 void destroy_queue(Priority_Queue *queue)
 {
     Priority_Node *temp = queue->_front;
@@ -44,8 +45,9 @@ void destroy_queue(Priority_Queue *queue)
     }
     free(queue);
 }
+#pragma endregion
 
-// Methods
+#pragma region Methods
 void enqueue(Priority_Queue *queue, int data, int priority)
 {
     Priority_Node *new_node = create_node_priority(data, priority);
@@ -116,3 +118,4 @@ bool is_empty(Priority_Queue *queue)
 {
     return queue->_size == 0;
 }
+#pragma endregion

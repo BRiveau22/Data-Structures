@@ -1,6 +1,6 @@
 #include "Stack.h"
 
-// Constructors
+#pragma region Constructors
 Stack *create_stack()
 {
     Stack *stack = (Stack *)malloc(sizeof(Stack));
@@ -32,8 +32,9 @@ Stack *create_stack_list(int data[])
     }
     return stack;
 }
+#pragma endregion
 
-// Destructor
+#pragma region Destructor
 void destroy(Stack *stack)
 {
     Node *current = stack->_top;
@@ -45,8 +46,9 @@ void destroy(Stack *stack)
     }
     free(stack);
 }
+#pragma endregion
 
-// Methods
+#pragma region Methods
 void push(Stack *stack, int data)
 {
     Node *node = create_node_data(data);
@@ -87,3 +89,4 @@ int size(Stack *stack)
 {
     return stack->_size;
 }
+#pragma endregion

@@ -1,6 +1,6 @@
 #include "Queue.h"
 
-// Constructors
+#pragma region Constructors
 Queue *create_queue()
 {
     Queue *queue = (Queue *)malloc(sizeof(Queue));
@@ -32,8 +32,9 @@ Queue *create_queue_arr(int *arr)
     }
     return queue;
 }
+#pragma endregion
 
-// Destructor
+#pragma region Destructor
 void destroy_queue(Queue *queue)
 {
     while (!is_empty(queue))
@@ -42,8 +43,9 @@ void destroy_queue(Queue *queue)
     }
     free(queue);
 }
+#pragma endregion
 
-// Methods
+#pragma region Methods
 void enqueue(Queue *queue, int data)
 {
     Node *node = create_node_data(data);
@@ -92,3 +94,4 @@ bool is_empty(Queue *queue)
 {
     return queue->_size == 0;
 }
+#pragma endregion

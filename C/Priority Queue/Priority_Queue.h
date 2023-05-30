@@ -10,19 +10,21 @@ typedef struct Priority_Queue
     int _size;
 } Priority_Queue;
 
-// Constructors
+#pragma region Constructors
 Priority_Queue *create_queue();
 Priority_Queue *create_queue_data(int data);
 Priority_Queue *create_queue_arr(int *arr);
+#pragma endregion
 
-// Destructors
+#pragma region Destructors
 void destroy_queue(Priority_Queue *queue);
+#pragma endregion
 
-// Methods
+#pragma region Methods
 void enqueue(Priority_Queue *queue, int data, int priority);
 void dequeue(Priority_Queue *queue);
 int peek(Priority_Queue *queue);
 int get_size(Priority_Queue *queue);
 bool is_empty(Priority_Queue *queue);
-
+#pragma endregion
 #endif

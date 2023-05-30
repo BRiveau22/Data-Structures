@@ -1,6 +1,6 @@
 #include "Node.h"
 
-// Constructors
+#pragma region Constructors
 Node *create_node()
 {
     Node *node = (Node *)malloc(sizeof(Node));
@@ -27,9 +27,11 @@ Node *create_node_full(int data, Node *next)
 
     return node;
 }
+#pragma endregion
 
-// Destructor
+#pragma region Destructor
 void destroy_node(Node *node)
 {
     free(node);
 }
+#pragma endregion

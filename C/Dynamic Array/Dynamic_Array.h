@@ -10,21 +10,23 @@ typedef struct DynamicArray
     double _scale_factor;
 } DynamicArray;
 
-// Constructors
+#pragma region Constructors
 DynamicArray *create_array();
 DynamicArray *create_array_capacity(double scale_factor, int capacity);
 DynamicArray *create_array_default_value(double scale_factor, int length, int default_value);
+#pragma endregion
 
-// Destructor
+#pragma region Destructor
 void destroy_array(DynamicArray *array);
+#pragma endregion
 
-// Methods
+#pragma region Methods
 void resize(DynamicArray *array);
-void append(DynamicArray *, int data);
-void prepend(DynamicArray *, int data);
-void insert(DynamicArray *, int data, int idx);
-int find_first(DynamicArray *, int data);
-int find_last(DynamicArray *, int data);
-bool exists(DynamicArray *, int data);
-
+void append(DynamicArray *array, int data);
+void prepend(DynamicArray *array, int data);
+void insert(DynamicArray *array, int data, int idx);
+int find_first(DynamicArray *array, int data);
+int find_last(DynamicArray *array, int data);
+bool exists(DynamicArray *array, int data);
+#pragma endregion
 #endif

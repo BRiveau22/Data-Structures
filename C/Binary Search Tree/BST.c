@@ -1,6 +1,6 @@
 #include "BST.h"
 
-// Constructor
+#pragma region Constructor
 BST *create_tree()
 {
     BST *tree = (BST *)malloc(sizeof(BST));
@@ -8,15 +8,17 @@ BST *create_tree()
     tree->_size = 0;
     return tree;
 }
+#pragma endregion
 
-// Destructor
+#pragma region Destructor
 void destroy_tree(BST *tree)
 {
     destroy_node(tree->_root);
     free(tree);
 }
+#pragma endregion
 
-// Methods
+#pragma region Methods
 BST_Node *insert(BST *tree, BST_Node *root, int data)
 {
     if (data == root->_data)
@@ -165,3 +167,4 @@ int height(BST *tree, BST_Node *root)
 
     return (left_height > right_height) ? left_height + 1 : right_height + 1;
 }
+#pragma endregion

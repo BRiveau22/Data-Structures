@@ -1,6 +1,6 @@
 #include "Hash_Table.h"
 
-// Constructors
+#pragma region Constructors
 Hash_Table *create_hash(int mode)
 {
     Hash_Table *hash_table = (Hash_Table *)malloc(sizeof(Hash_Table));
@@ -26,16 +26,18 @@ Hash_Table *create_hash_with_size(int mode, int size)
 
     return hash_table;
 }
+#pragma endregion
 
-// Destructor
+#pragma region Destructor
 void destroy_hash(Hash_Table hash_table)
 {
     free(hash_table._table);
     free(&hash_table);
 }
+#pragma endregion
 
-// Private Methods
-int _num_digits(Hash_Table *hash_table)
+#pragma region Private Methods
+int num_digits(Hash_Table *hash_table)
 {
     int temp_size = hash_table->_table_size - 1;
     int r = 0;
@@ -48,22 +50,22 @@ int _num_digits(Hash_Table *hash_table)
     return r;
 }
 
-int _div_hash(Hash_Table *hash_table, int key)
+int div_hash(Hash_Table *hash_table, int key)
 {
     int idx = key % hash_table->_table_size;
     if (hash_table->_table[idx] != 0)
     {
         hash_table->_num_collisions++;
-        idx = _div_hash(hash_table, key + 1);
+        idx = div_hash(hash_table, key + 1);
     }
 
     return idx;
 }
 
-int _mid_square_hash(Hash_Table *hash_table, int key)
+int mid_square_hash(Hash_Table *hash_table, int key)
 {
     int idx;
-    int r = _num_digits(hash_table);
+    int r = num_digits(hash_table);
 
     char square[] = key * key;
     strncpy(square, square + (strlen(square) / 2) - (r / 2), r);
@@ -72,16 +74,16 @@ int _mid_square_hash(Hash_Table *hash_table, int key)
     if (hash_table->_table[idx] != 0)
     {
         hash_table->_num_collisions++;
-        idx = _mid_square_hash(hash_table, key + 1);
+        idx = mid_square_hash(hash_table, key + 1);
     }
 
     return idx;
 }
 
-int _digit_folding_hash(Hash_Table *hash_table, int key)
+int digit_folding_hash(Hash_Table *hash_table, int key)
 {
     int idx;
-    int r = _num_digits(hash_table);
+    int r = num_digits(hash_table);
 
     char key_str[] = key;
     while (key_str > 0)
@@ -99,13 +101,13 @@ int _digit_folding_hash(Hash_Table *hash_table, int key)
     if (hash_table->_table[idx] != 0)
     {
         hash_table->_num_collisions++;
-        idx = _digit_folding_hash(hash_table, key + 1);
+        idx = digit_folding_hash(hash_table, key + 1);
     }
 
     return idx;
 }
 
-int _mult_hash(Hash_Table *hash_table, int key, double a_value)
+int mult_hash(Hash_Table *hash_table, int key, double a_value)
 {
     int random = (key * a_value) + 0.5;
     int idx = hash_table->_table_size * random;
@@ -113,13 +115,13 @@ int _mult_hash(Hash_Table *hash_table, int key, double a_value)
     if (hash_table->_table[idx] != 0)
     {
         hash_table->_num_collisions++;
-        idx = _mult_hash(hash_table, key + 1, a_value);
+        idx = mult_hash(hash_table, key + 1, a_value);
     }
 
     return idx;
 }
 
-void _resize(Hash_Table *hash_table)
+void resize(Hash_Table *hash_table)
 {
     Hash_Table *new_table = create_with_size(hash_table->_mode, hash_table->_table_size * 2);
     for (int i = 0; i < hash_table->_table_size; i++)
@@ -132,35 +134,37 @@ void _resize(Hash_Table *hash_table)
 
     hash_table = new_table;
 }
+#pragma endregion
 
-// Public Methods
+#pragma region Public Methods
 void insert(Hash_Table *hash_table, int key)
 {
     if ((double)hash_table->_num_elements / (double)hash_table->_table_size > 0.7)
     {
-        _resize(hash_table);
+        resize(hash_table);
     }
 
     int idx;
     switch (hash_table->_mode)
     {
     case 0:
-        idx = _div_hash(hash_table, key);
+        idx = div_hash(hash_table, key);
         break;
     case 1:
-        idx = _mid_square_hash(hash_table, key);
+        idx = mid_square_hash(hash_table, key);
         break;
     case 2:
-        idx = _digit_folding_hash(hash_table, key);
+        idx = digit_folding_hash(hash_table, key);
         break;
     case 3:
-        idx = _mult_hash(hash_table, key, hash_table->_a_value);
+        idx = mult_hash(hash_table, key, hash_table->_a_value);
         break;
     default:
-        idx = _div_hash(hash_table, key);
+        idx = div_hash(hash_table, key);
         break;
     }
 
     hash_table->_table[idx] = key;
     hash_table->_num_elements++;
 }
+#pragma endregion

@@ -1,5 +1,5 @@
-#ifndef LINKED_LIST_H
-#define LINKED_LIST_H
+#ifndef NODE_H
+#define NODE_H
 #include <stddef.h>
 
 typedef struct Node
@@ -8,12 +8,13 @@ typedef struct Node
     struct Node *_next;
 } Node;
 
-// Constructors
+#pragma region Constructors
 Node *create_node();
 Node *create_node_data(int data);
 Node *create_node_full(int data, Node *next);
+#pragma endregion
 
-// Destructor
+#pragma region Destructor
 void destroy_node(Node *node);
-
+#pragma endregion
 #endif

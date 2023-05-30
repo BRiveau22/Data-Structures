@@ -9,10 +9,11 @@ typedef struct BST_Node
     struct BST_Node *_right;
 } BST_Node;
 
-// Constructor
+#pragma region Constructor
 BST_Node *create_node(int data);
+#pragma endregion
 
-// Destructor
+#pragma region Destructor
 void destroy_node(BST_Node *root);
-
+#pragma endregion
 #endif

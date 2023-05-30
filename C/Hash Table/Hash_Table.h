@@ -12,21 +12,25 @@ typedef struct Hash_Table
     double _a_value;
 } Hash_Table;
 
-// Constructors
+#pragma region Constructors
 Hash_Table *create_hash(int mode);
 Hash_Table *create_hash_with_size(int mode, int size);
+#pragma endregion
 
-// Destructor
+#pragma region Destructor
 void destroy_hash(Hash_Table *table);
+#pragma endregion
 
-// Private Methods
-int _num_digits(Hash_Table *table);
-int _div_hash(Hash_Table *table, int key);
-int _mid_square_hash(Hash_Table *table, int key);
-int _digit_folding_hash(Hash_Table *table, int key);
-int _mult_hash(Hash_Table *table, int key, double a_value);
-void _resize(Hash_Table *table);
+#pragma region Private Methods
+int num_digits(Hash_Table *table);
+int div_hash(Hash_Table *table, int key);
+int mid_square_hash(Hash_Table *table, int key);
+int digit_folding_hash(Hash_Table *table, int key);
+int mult_hash(Hash_Table *table, int key, double a_value);
+void resize(Hash_Table *table);
+#pragma endregion
 
-// Public Methods
+#pragma region Public Methods
 void insert(Hash_Table *table, int key);
+#pragma endregion
 #endif

@@ -10,13 +10,15 @@ typedef struct BST
     int _size;
 } BST;
 
-// Constructor
+#pragma region Constructor
 BST *create_tree();
+#pragma endregion
 
-// Destructor
+#pragma region Destructor
 void destroy_tree(BST_Node *root);
+#pragma endregion
 
-// Methods
+#pragma region Methods
 BST_Node *insert(BST *tree, BST_Node *root, int data);
 int height(BST *tree, BST_Node *root);
 BST_Node *find_ios(BST *tree, BST_Node *root); // In Order Successor (IOS)
@@ -25,5 +27,5 @@ void preorder(BST *tree, BST_Node *root);
 void inorder(BST *tree, BST_Node *root);
 void postorder(BST *tree, BST_Node *root);
 bool search(BST *tree, BST_Node *root, int data);
-
+#pragma endregion
 #endif

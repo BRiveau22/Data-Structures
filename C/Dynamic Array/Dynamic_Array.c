@@ -1,6 +1,6 @@
 #include "Dynamic_Array.h"
 
-// Constructors
+#pragma region Constructors
 DynamicArray *create_array()
 {
     DynamicArray *array = (DynamicArray *)malloc(sizeof(DynamicArray));
@@ -34,15 +34,17 @@ DynamicArray *create_array_default_value(double scale_factor, int length, int de
     }
     return array;
 }
+#pragma endregion
 
-// Destructor
+#pragma region Destructor
 void destroy_array(DynamicArray *array)
 {
     free(array->_data);
     free(array);
 }
+#pragma endregion
 
-// Methods
+#pragma region Methods
 void resize(DynamicArray *array)
 {
     int *new_data = (int *)malloc(sizeof(int) * array->_capacity * array->_scale_factor);
@@ -138,3 +140,4 @@ bool exists(DynamicArray *array, int data)
 
     return false;
 }
+#pragma endregion

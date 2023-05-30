@@ -1,6 +1,6 @@
 #include "Linked_List.h"
 
-// Constructors
+#pragma region Constructor
 LinkedList *create_linked_list()
 {
     LinkedList *list = (LinkedList *)malloc(sizeof(LinkedList));
@@ -8,8 +8,9 @@ LinkedList *create_linked_list()
     list->size = 0;
     return list;
 }
+#pragma endregion
 
-// Destructor
+#pragma region Destructor
 void destroy_linked_list(LinkedList *list)
 {
     Node *current = list->head;
@@ -22,8 +23,9 @@ void destroy_linked_list(LinkedList *list)
     }
     free(list);
 }
+#pragma endregion
 
-// Methods
+#pragma region Methods
 void append(LinkedList *list, int data)
 {
     Node *new_node = create_node_data(data);
@@ -110,3 +112,4 @@ void print(LinkedList *list)
         current = current->_next;
     }
 }
+#pragma endregion
